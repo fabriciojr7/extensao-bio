@@ -38,6 +38,7 @@ export default function Login() {
         <FormGrouping>
           <Input
             placeholder="Senha"
+            type="password"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
           />
