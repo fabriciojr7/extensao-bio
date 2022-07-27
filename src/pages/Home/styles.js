@@ -3,8 +3,21 @@ import { NavLink as Link } from "react-router-dom";
 
 export const Container = styled.div`
   width: 100%;
-  padding: 0 20px;
+  height: auto;
+  padding: 0 20,px;
   padding-bottom: 24px;
+`
+
+export const Teste = styled.div`
+  width: 100%;
+  min-height: 100%;
+  background: ${({ theme }) => theme.colors.primary.lighter};;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  overflow: hidden;
 `
 
 export const Faixa = styled.div`
@@ -12,7 +25,7 @@ export const Faixa = styled.div`
   height: 400px;
   padding: 16px 0;
 
-  background-image: linear-gradient(to right,
+  /* background-image: linear-gradient(to right,
     ${({ theme }) => theme.colors.background},
     ${({ theme }) => theme.colors.secondary.light},
     ${({ theme }) => theme.colors.secondary.main},
@@ -20,7 +33,7 @@ export const Faixa = styled.div`
     ${({ theme }) => theme.colors.secondary.main},
     ${({ theme }) => theme.colors.secondary.light},
     ${({ theme }) => theme.colors.background}
-  );
+  ); */
 
   @media screen and (max-width: 880px){
     height: 300px;
@@ -58,14 +71,39 @@ export const LogoEvento = styled.div`
 
 `
 
+
 export const Text = styled.div`
   text-align: center;
-  color: ${({ theme }) => theme.colors.primary.dark};
+
   h1{
     font-size: 42px;
+    color: ${({ theme }) => theme.colors.gray[600]};
+
+    span{
+      &:first-child{
+        padding: 16px;
+
+
+        border-radius: 50%;
+        background: ${({ theme }) => theme.colors.brown.light};
+        color: #fff;
+        margin-right: 16px;
+
+        &::after{
+        width: 100px;
+        height: 100px;
+        background: ${({ theme }) => theme.colors.brown.light};
+      }
+      }
+
+      &:last-child{
+        color: ${({ theme }) => theme.colors.primary.dark};
+      }
+    }
   }
   h2{
     font-size: 24px;
+    color: ${({ theme }) => theme.colors.brown.light};
   }
 
   @media screen and (max-width: 1100px){
@@ -106,7 +144,6 @@ export const Content = styled.div`
   align-items: center;
   justify-content: center;
 
-  color: ${({ theme }) => theme.colors.primary.dark};
 
   h3{
     font-size: 24px;
@@ -118,6 +155,11 @@ export const Content = styled.div`
     span{
       font-weight: bold;
     }
+  }
+
+  button{
+    width: 300px;
+    margin-top: 24px;
   }
 
   @media screen and (max-width: 700px){

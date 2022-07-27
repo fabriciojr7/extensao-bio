@@ -24,35 +24,45 @@ export const Tab = styled.div`
   flex: 1;
   padding: 8px;
   text-align: center;
-  border-bottom: 2px solid ${({theme}) => theme.colors.ternary.lighter};
+  border-bottom: 2px solid ${({theme}) => theme.colors.ternary.dark};
   cursor: pointer;
 
   h4{
-    color: ${(props) => props.theme.colors.ternary.lighter};
+    color: ${(props) => props.theme.colors.gray[500]};
     font-size: 18px;
   }
   p{
-    color: ${(props) => props.theme.colors.ternary.dark};
+    color: ${(props) => props.theme.colors.primary.dark};
     font-size: 14px;
   }
 
   &.active {
+    background: ${({ theme }) => theme.colors.primary.lighter};
+    border-bottom: 2px solid ${({ theme }) => theme.colors.primary.dark};
+
     h4{
-      color: ${({ theme }) => theme.colors.secondary.dark};
+      color: ${({ theme }) => theme.colors.primary.dark};
     }
-    background: ${({ theme }) => theme.colors.secondary.lighter};
-    border-bottom: 2px solid ${({ theme }) => theme.colors.secondary.dark};
+
+    p{
+      color: ${(props) => props.theme.colors.gray[500]};
+    }    
   }
 
   &:hover{
+    border-bottom: 2px solid ${({theme}) => theme.colors.primary.dark};
+
     h4{
-      color: ${({theme}) => theme.colors.secondary.dark};
+      color: ${({theme}) => theme.colors.primary.dark};
     }
-    border-bottom: 2px solid ${({theme}) => theme.colors.secondary.dark};
+    p{
+      color: ${(props) => props.theme.colors.gray[500]};
+    }    
   }
 `;
 
 export const TabBody = styled.div`
+  width: 100%;
   margin-top: 16px;
 `;
 
@@ -68,19 +78,24 @@ export const Card = styled.div`
   min-height: 100px;
   margin-bottom: 4px;
   display: flex;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 8px;
+
+  &:hover{
+    background: ${({theme}) => theme.colors.ternary.light};
+  }
 `
 
 export const Informacoes = styled.div`
-  width: 200px;
+  width: 170px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   padding-right: 20px;
 
-
-
   h4{
-    color: ${({theme}) => theme.colors.primary.main};
+    color: ${({theme}) => theme.colors.gray[900]};
     font-size: 18px;
     font-weight: 400;
   }
@@ -89,7 +104,8 @@ export const Informacoes = styled.div`
     color: ${({theme}) => theme.colors.primary.main};
     font-size: 14px;
     padding-right: 4px;
-    border-right: 3px solid ${({theme}) => theme.colors.secondary.dark};
+    border-right: 3px solid ${({theme}) => theme.colors.primary.dark};
+    margin-top: 8px;
   }
 
   @media screen and (max-width:600px){
@@ -101,26 +117,25 @@ export const Informacoes = styled.div`
       font-size: 12px;
     }
   }
-
 `
 
 export const Evento = styled.div`
   flex: 1;
   padding-left: 20px;
-  border-left: 2px solid ${({ theme }) => theme.colors.secondary.dark};
+  border-left: 2px solid ${({ theme }) => theme.colors.primary.dark};
 
-  h3{
-    font-size: 22px;
-    color: ${({theme}) => theme.colors.primary.dark};
+  h1{
+    font-size: 20px;
+    color: ${({theme}) => theme.colors.gray[900]};
     margin-bottom: 8px;
   }
   span{
     font-size: 14px;
-    color: ${({theme}) => theme.colors.primary.dark};
+    color: ${({theme}) => theme.colors.gray[500]};
   }
 
   @media screen and (max-width:600px){
-    h3{
+    h1{
       font-size: 18px;
     }
     span{

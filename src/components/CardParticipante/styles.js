@@ -7,7 +7,7 @@ export const Card = styled.div`
   position: relative;
   background: #fff;
   border-radius: 20px;
-  box-shadow: 0 1px 10px 0 ${({theme}) => theme.colors.primary.dark};
+  box-shadow: 0 1px 10px 0 ${({theme}) => theme.colors.gray[500]};
 
   &::before{
     content: "";
@@ -48,7 +48,7 @@ export const ImageContent = styled.div`
 export const InfosContent = styled.div`
   text-align: center;
   margin-top: 16px;
-  color: ${({theme}) => theme.colors.primary.main};
+  color: ${({theme}) => theme.colors.brown.dark};
   h3{
     font-size: 20px;
     font-size: bold;
@@ -58,7 +58,7 @@ export const InfosContent = styled.div`
   h4{
     font-size: 16px;
     font-size: 500;
-    color: ${({theme}) => theme.colors.secondary.main};
+    color: ${({theme}) => theme.colors.primary.main};
   }
 
 `

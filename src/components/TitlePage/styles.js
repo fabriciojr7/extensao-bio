@@ -10,15 +10,16 @@ export const Container = styled.div`
   overflow-x: hidden;
   background-image: linear-gradient(to right,
     ${({ theme }) => theme.colors.background},
-    ${({ theme }) => theme.colors.secondary.main},
-    ${({ theme }) => theme.colors.secondary.dark},
-    ${({ theme }) => theme.colors.secondary.main},
+    ${({ theme }) => theme.colors.ternary.light},
+    ${({ theme }) => theme.colors.ternary.dark},
+    ${({ theme }) => theme.colors.ternary.light},
     ${({ theme }) => theme.colors.background}
     );
 
   h1{
     font-size: 40px;
-    color: ${({theme}) => theme.colors.primary.dark};
+    letter-spacing: 2px;
+    color: ${({ theme }) => theme.colors.brown.dark};
     z-index: 1;
   }
 
@@ -57,4 +58,6 @@ export const Image = styled.div`
       right: -50px;
     }
   }
+
+
 `

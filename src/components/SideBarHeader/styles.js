@@ -7,7 +7,7 @@ export const Container = styled.aside`
   z-index: 999;
   width: 100%;
   height: 100%;
-  background: ${({theme}) => theme.colors.primary.main};
+  background: ${({theme}) => theme.colors.brown.main};
   display: grid;
   align-items: center;
   top: 0;
@@ -63,16 +63,18 @@ export const SideBarLink = styled(LinkS)`
     color: ${({theme}) => theme.colors.secondary.main};
     transition: 0.2s ease-in-out;
   }
+
+  &:last-child{
+    margin-bottom: 16px;
+  }
 `
 
 export const SideBtnContainer = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
-
   svg{
     color: ${({theme}) => theme.colors.secondary.main};
-    font-size: 24px;
+    font-size: 32px;
     margin: 0 20px;
     cursor: pointer;
     transition: 0.2s color ease-in-out;

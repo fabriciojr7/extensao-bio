@@ -1,31 +1,37 @@
 const defaultTheme = {
   colors: {
-    background: '#c1f6ed',
+    background: '#f6f5fc',
     primary: {
-      lighter: '#2598ab',
-      light: '#166c7a',
-      main: '#02414a',
-      dark: '#00171b',
+      lighter: '#c2edd9',
+      light: '#9fe0c1',
+      main: '#7ad3a8',
+      dark: '#56c790',
     },
     secondary: {
-      lighter: '#70dab1',
-      light: '#49cf9b',
-      main: '#30b682',
-      dark: '#228d65',
+      lighter: '#c2edd9',
+      light: '#9fe0c1',
+      main: '#7ad3a8',
+      dark: '#56c790',
     },
     ternary: {
-      lighter: '#84c883',
-      light: '#63b861',
-      main: '#499e47',
-      dark: '#387b36',
+      light: '#f2ffe5',
+      main: '#e0feb8',
+      dark: '#c9fd84',
+    },
+    brown:{
+      lighter: '#b5ad65',
+      light: '#9b934b',
+      main: '#79733a',
+      dark: '#565228',
     },
     gray: {
       900: '#222',
+      600: '#595959',
       500: '#9e9e9e',
       200: '#bcbcbc',
       100: '#e5e5e5',
     },
-    red: {
+    danger: {
       light: '#f15b67',
       main: '#eb2d3b',
       dark: '#d21421',

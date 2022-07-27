@@ -3,17 +3,20 @@ import styled from "styled-components";
 export const Container = styled.div`
   margin: 20px;
   width: 100%;
-  background-image: linear-gradient(to right,
-  ${({ theme }) => theme.colors.secondary.dark},
-  ${({ theme }) => theme.colors.secondary.main},
-  ${({ theme }) => theme.colors.background},
-  ${({ theme }) => theme.colors.secondary.main},
-  ${({ theme }) => theme.colors.secondary.dark}
+  background-image: linear-gradient(to bottom right,
+  ${({ theme }) => theme.colors.brown.dark},
+  ${({ theme }) => theme.colors.brown.dark},
+  ${({ theme }) => theme.colors.brown.main},
+  ${({ theme }) => theme.colors.brown.light},
+  ${({ theme }) => theme.colors.brown.lighter}
   );
-  text-align: center;
-  padding: 20px 0;
+  padding: 16px;
   font-size: 24px;
   font-weight: bold;
   letter-spacing: 1px;
-  color: ${({ theme }) => theme.colors.primary.dark};
+  color: #fff;
+
+  @media screen and (max-width: 600px){
+    font-size: 20px;
+  }
 `

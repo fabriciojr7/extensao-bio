@@ -1,27 +1,64 @@
+import { useContext } from 'react';
 import {
-  BrowserRouter as Router, Routes, Route
+  BrowserRouter as Router, Routes, Route, Navigate
 } from 'react-router-dom';
 
 import Layout from './pages/Layout';
 import Home from './pages/Home';
 import Programacao from './pages/Programacao';
-import Apresentacao from './pages/Apresentação';
+import Apresentacao from './pages/Apresentacao';
 import Organizacao from './pages/Organizacao';
-import Resumo from './pages/Resumo';
+import EnvioResumo from './pages/EnvioResumo';
+import Inscricao from './pages/Inscricao';
+
+// ADM
+import Login from './pages/Login';
+import Dashboard from './pages/private/Dashboard';
+import Inscritos from './pages/private/Inscritos';
+import LayoutAdm from './pages/private/LayoutAdm';
+import Resumos from './pages/private/Resumos';
+import VisualizacaoResumo from './pages/private/VisualizacaoResumo';
+
+import { AuthProvider, AuthContext } from './context/auth';
+
+function PrivateRoute({ children }) {
+  const { authenticated, loading } = useContext(AuthContext);
+
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
+
+  if (!authenticated) {
+    return <Navigate to="/login" />;
+  }
+  return children;
+}
 
 export default function MainRoutes() {
+
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path='/programacao' element={<Programacao />} />
-          <Route path='/apresentacao' element={<Apresentacao />} />
-          <Route path='/organizacao' element={<Organizacao />} />
-          <Route path='/resumos' element={<Resumo />} />
-        </Route>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path='/programacao' element={<Programacao />} />
+            <Route path='/apresentacao' element={<Apresentacao />} />
+            <Route path='/organizacao' element={<Organizacao />} />
+            <Route path='/envioresumo' element={<EnvioResumo />} />
+            <Route path='/inscricao' element={<Inscricao />} />
+          </Route>
 
-      </Routes>
+          <Route path='/login' element={<Login />} />
+
+          <Route path="/adm" element={<PrivateRoute><LayoutAdm /></PrivateRoute>}>
+            <Route index element={<Dashboard />} />
+            <Route path="/adm/inscritos" element={<Inscritos />} />
+            <Route path='/adm/resumos' element={<Resumos />} />
+            <Route path='/adm/visualizacaoResumo/:id' element={<VisualizacaoResumo />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </Router>
   )
 }

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Content = styled.div`
   width: 100%;
@@ -17,14 +17,14 @@ export const ContentText = styled.div`
   text-align: justify;
   line-height: 28px;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.primary.dark};
+  color: ${({ theme }) => theme.colors.gray[900]};
 
   p{
     font-size: 16px;
     text-indent: 24px;
 
     span{
-      color: ${({ theme }) => theme.colors.primary.light};
+      color: ${({ theme }) => theme.colors.primary.dark};
       font-size: 18px;
     }
   }
@@ -47,9 +47,10 @@ export const AreaText = styled.div`
 `;
 
 export const AreaImage = styled.div`
-  width: 400px;
+  width: 480px;
   height: 620px;
   margin-left: 32px;
+
   img{
     width: inherit;
     height: inherit;
@@ -77,3 +78,25 @@ export const AreaImage = styled.div`
     }
   }
 `;
+
+
+export const Questionario = styled.a`
+  width: 300px;
+  height: 48px;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 2px;
+
+
+  ${({ theme }) => css`
+    background: linear-gradient(135deg, ${theme.colors.primary.dark}, ${theme.colors.brown.lighter});
+    &:hover{
+      background: linear-gradient(-135deg, ${theme.colors.primary.dark}, ${theme.colors.brown.lighter});
+    }
+  `}
+`

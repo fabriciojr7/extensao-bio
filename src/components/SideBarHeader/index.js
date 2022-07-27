@@ -1,13 +1,12 @@
 import {
   Container, Icon, CloseIcon,
   SideBarContent, SideBarMenu, SideBarLink, SideBtnContainer,
-  // SideBarBtn
 } from "./styles";
 
 import { AiOutlineMail, AiOutlineInstagram } from "react-icons/ai";
 
 
-export default function SideBarHeader({ isOpen, toggle }) {
+export default function SideBarHeader({ isOpen, toggle, modalOpened }) {
   return (
     <Container isOpen={isOpen} onClick={toggle} >
       <Icon onClick={toggle}>
@@ -15,10 +14,13 @@ export default function SideBarHeader({ isOpen, toggle }) {
       </Icon>
       <SideBarContent>
         <SideBarMenu>
-          <SideBarLink to="/programacao">Programacao</SideBarLink>
+          <SideBarLink to="/">Home</SideBarLink>
           <SideBarLink to="/apresentacao" >Apresentação</SideBarLink>
           <SideBarLink to="/organizacao" >Organização</SideBarLink>
-          <SideBarLink to="/resumos" >Resumos</SideBarLink>
+          <SideBarLink to="/programacao">Programação</SideBarLink>
+          <SideBarLink to="/envioresumo" >Envio de resumos</SideBarLink>
+          <SideBarLink to="/inscricao" >Inscreva-se</SideBarLink>
+          <SideBarLink to="/login" >Acesso organização</SideBarLink>
         </SideBarMenu>
         <SideBtnContainer>
           <a
@@ -26,8 +28,7 @@ export default function SideBarHeader({ isOpen, toggle }) {
           >
             <AiOutlineInstagram />
           </a>
-          <AiOutlineMail />
-          {/* <SideBarBtn to="/">Inscreva-se</SideBarBtn> */}
+          <AiOutlineMail onClick={modalOpened} />
         </SideBtnContainer>
       </SideBarContent>
     </Container>

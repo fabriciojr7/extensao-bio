@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import TitlePage from "../../components/TitlePage";
-import { dia1, dia2, dia3 } from '../Apresentação/dataProgramacao';
+import { dia1, dia2, dia3 } from '../Apresentacao/dataProgramacao';
 
 import {
   Container, TabHead, Tab, TabBody, TabContent,
@@ -54,7 +54,7 @@ export default function Programacao() {
                     <span>{dia.local}</span>
                   </Informacoes>
                   <Evento>
-                    <h3>{dia.tema}</h3>
+                    <h1>{dia.tema}</h1>
                     <span>{dia.descricao}</span>
                   </Evento>
                 </Card>
@@ -70,7 +70,7 @@ export default function Programacao() {
                     <span>{dia.local}</span>
                   </Informacoes>
                   <Evento>
-                    <h3>{dia.tema}</h3>
+                    <h1>{dia.tema}</h1>
                     <span>{dia.descricao}</span>
                   </Evento>
                 </Card>
@@ -87,7 +87,7 @@ export default function Programacao() {
                     <span>{dia.local}</span>
                   </Informacoes>
                   <Evento>
-                    <h3>{dia.tema}</h3>
+                    <h1>{dia.tema}</h1>
                     <span>{dia.descricao}</span>
                   </Evento>
                 </Card>

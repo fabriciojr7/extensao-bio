@@ -34,7 +34,7 @@ export const docentes = [
   {
     id: 4,
     foto: sivia,
-    nome: 'Silvia Vendruscolo Milesi Milesi',
+    nome: 'Silvia Vendruscolo Milesi',
     funcao: 'Coordenadora de Marketing'
   },
 ]
@@ -74,13 +74,13 @@ export const discentes = [
     id: 6,
     foto: geovana,
     nome: 'Geovana Pereira de Carvalho',
-    funcao: 'Desenvolvedor de Marketing'
+    funcao: 'Desenvolvedora de Marketing'
   },
   {
     id: 7,
     foto: julia,
     nome: 'Júlia Vitória Riscalli Mota Gimenez',
-    funcao: 'Desenvolvedor Científico e de Marketing'
+    funcao: 'Desenvolvedora Científico e de Marketing'
   },
   {
     id: 8,

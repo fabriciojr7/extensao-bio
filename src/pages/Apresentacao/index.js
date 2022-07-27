@@ -1,9 +1,9 @@
 import TitlePage from "../../components/TitlePage";
 import TitleTopico from "../../components/TitleTopico";
 
-import { Content, ContentText, Box, AreaText, AreaImage } from './styles';
+import { Content, ContentText, Box, AreaText, AreaImage, Questionario } from './styles';
 
-import planeta from '../../assets/images/planeta.png';
+import planeta from '../../assets/images/logo-bio.png';
 import ufmsCptl from '../../assets/images/ufms-cptl.jpg';
 
 export default function Apresentacao() {
@@ -12,8 +12,16 @@ export default function Apresentacao() {
       <TitlePage text='Apresentação' />
 
       <Content>
+
         <Box>
           <AreaText>
+            <ContentText>
+              <p>Olá, pessoal!! Sejam bem-vindos a 13º Semana da Biologia. Esta edição está contando com
+                inúmeros eventos, novidades e atrações. Venham saber um pouco mais!
+              </p>
+            </ContentText>
+
+            <TitleTopico text='O que é?' />
             <ContentText>
               <p>
                 A Semana da Biologia é um projeto de extensão realizado anualmente que tem como
@@ -23,12 +31,13 @@ export default function Apresentacao() {
                 articulação de debates, técnicas e reflexões acerca das novas tendências das Ciências Biológicas.
               </p>
             </ContentText>
+
             <TitleTopico text='Como será este ano?' />
 
             <ContentText>
               <p>
-                A XIII Semana da Biologia tem como tema desta edição:
-                <span>“Educação e Biodiversidade: Divulgando a Ciência”</span>
+                A 13° Semana da Biologia tem como tema desta edição:
+                <span> “Educação e Biodiversidade: Divulgando a Ciência”</span>
               </p>
 
               <p>
@@ -54,7 +63,7 @@ export default function Apresentacao() {
         <Box>
           <AreaText>
             <ContentText>
-              <p>A XIII Semana da Biologia será realizada nos dias <span>01 a 03 de setembro de 2022</span>, na Universidade Federal de Mato Grosso do Sul,
+              <p>A 13º Semana da Biologia será realizada nos dias <span>01 a 03 de setembro de 2022</span>, na Universidade Federal de Mato Grosso do Sul,
                 no Campus de Três Lagoas (UFMS/CPTL).
               </p>
             </ContentText>
@@ -68,11 +77,21 @@ export default function Apresentacao() {
         <TitleTopico text='O que teremos esse ano?' />
 
         <ContentText>
-          <p>A XIII SEMABIO ainda está com a sua programação em andamento e para que o evento atenda as expectativas de todos, a Comissão
+          <p>A 13º SEMABIO ainda está com a sua programação em andamento e para que o evento atenda as expectativas de todos, a Comissão
             Organizadora gostaria que vocês ajudassem respondendo o questionário abaixo com os temas que gostariam que fossem abordados em
             palestras. Estamos ansiosos para saber as opiniões e recomendações de vocês!
           </p>
         </ContentText>
+
+        <Questionario
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdnTCLgrZ1Uanl53wMUFyb9e6M5-w2yiA8d9XYyqjUBx2pzpg/viewform"
+              target="blank"
+        >
+
+            Acesse o questionário
+
+        </Questionario>
+
       </Content>
     </>
   )
