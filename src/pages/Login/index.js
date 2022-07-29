@@ -4,6 +4,8 @@ import FormGrouping from "../../components/FormGrouping";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { AuthContext } from "../../context/auth";
+import { Alert } from "../../utils/Alert";
+import isEmailValid from "../../utils/isEmailValid";
 
 import logo from "../../assets/images/logo-bio.png"
 
@@ -15,13 +17,26 @@ export default function Login() {
 
   const { login } = useContext(AuthContext);
 
-  const handleLogin = () => {
-    login(email, senha);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (!email && !senha) {
+      Alert('Atenção', 'O e-mail e senha são obrigatórios.', 'warning');
+    } else if (!senha) {
+      Alert('Atenção', 'A senha é obrigatória.', 'warning');
+    } else if (!email) {
+      Alert('Atenção', 'O e-mail é obrigatório.', 'warning');
+    } else {
+      if(isEmailValid(email)){
+        login(email, senha);
+      }else{
+        Alert('Atenção', 'O e-mail informado é inválido.', 'warning');
+      }
+    }
   }
 
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleLogin}>
         <Logo>
           <img src={logo} alt="Logo principal semana-bio" />
         </Logo>
@@ -46,7 +61,7 @@ export default function Login() {
 
         <FormGrouping>
           <Button
-            type="button"
+            type="submit"
             onClick={handleLogin}
           >
             Acessar

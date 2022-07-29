@@ -20,7 +20,7 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
   const [visible, setSetvisible] = useState(false);
 
-  const handleBuscaCpf = async () => {
+  const getDadosParticipante = async () => {
     try {
       if (cpf.trim()) {
         if (cpf && cpf.length < 14) {
@@ -63,10 +63,15 @@ export default function Dashboard() {
   const handlePresenca = async (dados) => {
     try {
       await updateCampo(`pessoa/${pessoa.id}`, dados);
-      handleBuscaCpf();
+      getDadosParticipante();
     } catch (error) {
       Alert('Atenção', 'Erro ao registrar presença: ' + error, 'error');
     }
+  }
+
+  const handleBuscaCpf = async (e) => {
+    e.preventDefault();
+    getDadosParticipante();
   }
 
   return (
@@ -77,7 +82,7 @@ export default function Dashboard() {
       <Line />
 
       <ContentForm>
-        <Form >
+        <Form onSubmit={handleBuscaCpf}>
           <FormGrouping>
             <Input
               value={cpf}
@@ -89,7 +94,7 @@ export default function Dashboard() {
           </FormGrouping>
 
           <FormGrouping>
-            <Button type="button" onClick={handleBuscaCpf}>Buscar</Button>
+            <Button type="submit">Buscar</Button>
           </FormGrouping>
         </Form>
       </ContentForm>
@@ -133,7 +138,9 @@ export default function Dashboard() {
             <span>Palestra 1: </span> {preseca.presenca1 ? 'Prensença já confirmada' :
               <button
                 onClick={() =>
-                  ConfirmeAlert({ titlePergunta: 'Deseja confirmar a presença?' }, handlePresenca({ 'palestra1': true }))}
+                  ConfirmeAlert({
+                    titlePergunta: 'Deseja confirmar a presença?'
+                  }, () => handlePresenca({ 'palestra1': true }))}
               >
                 Confirmar presença
               </button>}
@@ -142,7 +149,9 @@ export default function Dashboard() {
             <span>Palestra 2: </span> {preseca.presenca2 ? 'Prensença já confirmada' :
               <button
                 onClick={() =>
-                  handlePresenca({ 'palestra2': true })}
+                  ConfirmeAlert({
+                    titlePergunta: 'Deseja confirmar a presença?'
+                  }, () => handlePresenca({ 'palestra2': true }))}
               >
                 Confirmar presença
               </button>}
@@ -151,7 +160,9 @@ export default function Dashboard() {
             <span>Palestra 3: </span> {preseca.presenca3 ? 'Prensença já confirmada' :
               <button
                 onClick={() =>
-                  ConfirmeAlert({ titlePergunta: 'Deseja confirmar a presença?' }, () => handlePresenca({ 'palestra3': true }))}
+                  ConfirmeAlert({
+                    titlePergunta: 'Deseja confirmar a presença?'
+                  }, () => handlePresenca({ 'palestra3': true }))}
               >
                 Confirmar presença
               </button>}
@@ -160,7 +171,9 @@ export default function Dashboard() {
             <span>Palestra 4: </span> {preseca.presenca4 ? 'Prensença já confirmada' :
               <button
                 onClick={() =>
-                  ConfirmeAlert({ titlePergunta: 'Deseja confirmar a presença?' }, () => handlePresenca({ 'palestra4': true }))}
+                  ConfirmeAlert({
+                    titlePergunta: 'Deseja confirmar a presença?'
+                  }, () => handlePresenca({ 'palestra4': true }))}
               >
                 Confirmar presença
               </button>}
@@ -168,7 +181,10 @@ export default function Dashboard() {
           <li>
             <span>Palestra 5: </span> {preseca.presenca5 ? 'Prensença já confirmada' :
               <button
-                onClick={() => handlePresenca({ 'palestra5': true })}
+                onClick={() =>
+                  ConfirmeAlert({
+                    titlePergunta: 'Deseja confirmar a presença?'
+                  }, () => handlePresenca({ 'palestra5': true }))}
               >
                 Confirmar presença
               </button>}
@@ -176,7 +192,10 @@ export default function Dashboard() {
           <li>
             <span>Palestra 6: </span> {preseca.presenca6 ? 'Prensença já confirmada' :
               <button
-                onClick={() => handlePresenca({ 'palestra6': true })}
+                onClick={() =>
+                  ConfirmeAlert({
+                    titlePergunta: 'Deseja confirmar a presença?'
+                  }, () => handlePresenca({ 'palestra6': true }))}
               >
                 Confirmar presença
               </button>}
