@@ -1,7 +1,7 @@
 import TitlePage from "../../components/TitlePage";
 import TitleTopico from "../../components/TitleTopico";
 
-import { Content, ContentText, Box, AreaText, AreaImage, Questionario } from './styles';
+import { Content, ContentText, Box, AreaText, AreaImage } from './styles';
 
 import planeta from '../../assets/images/logo-bio.png';
 import ufmsCptl from '../../assets/images/ufms-cptl.jpg';
@@ -73,25 +73,6 @@ export default function Apresentacao() {
             <img src={ufmsCptl} alt="Imagem" />
           </AreaImage>
         </Box>
-
-        <TitleTopico text='O que teremos esse ano?' />
-
-        <ContentText>
-          <p>A 13º SEMABIO ainda está com a sua programação em andamento e para que o evento atenda as expectativas de todos, a Comissão
-            Organizadora gostaria que vocês ajudassem respondendo o questionário abaixo com os temas que gostariam que fossem abordados em
-            palestras. Estamos ansiosos para saber as opiniões e recomendações de vocês!
-          </p>
-        </ContentText>
-
-        <Questionario
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdnTCLgrZ1Uanl53wMUFyb9e6M5-w2yiA8d9XYyqjUBx2pzpg/viewform"
-              target="blank"
-        >
-
-            Acesse o questionário
-
-        </Questionario>
-
       </Content>
     </>
   )

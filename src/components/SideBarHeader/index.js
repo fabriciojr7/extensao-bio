@@ -1,6 +1,7 @@
 import {
   Container, Icon, CloseIcon,
   SideBarContent, SideBarMenu, SideBarLink, SideBtnContainer,
+  SideBarLinkExterno
 } from "./styles";
 
 import { AiOutlineMail, AiOutlineInstagram } from "react-icons/ai";
@@ -19,6 +20,11 @@ export default function SideBarHeader({ isOpen, toggle, modalOpened }) {
           <SideBarLink to="/organizacao" >Organização</SideBarLink>
           <SideBarLink to="/programacao">Programação</SideBarLink>
           <SideBarLink to="/envioresumo" >Envio de resumos</SideBarLink>
+          <SideBarLinkExterno
+            href="https://res.cloudinary.com/arquivosfb/image/upload/v1658797408/Normas_XIII_Semabio.docx_quqgsl.pdf"
+            target='blank'>
+            Normas para submissão
+          </SideBarLinkExterno>
           <SideBarLink to="/inscricao" >Inscreva-se</SideBarLink>
           <SideBarLink to="/login" >Acesso organização</SideBarLink>
         </SideBarMenu>

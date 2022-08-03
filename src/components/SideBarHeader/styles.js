@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink as LinkS } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 
 export const Container = styled.aside`
@@ -46,7 +46,7 @@ export const SideBarMenu = styled.ul`
   }
 `
 
-export const SideBarLink = styled(LinkS)`
+export const SideBarLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,13 +65,39 @@ export const SideBarLink = styled(LinkS)`
   }
 
   &:last-child{
-    margin-bottom: 16px;
+    margin-top: 16px;
   }
 `
+
+export const SideBarLinkExterno = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  list-style: none;
+  transition: 0.2s ease-in-out;
+  color: #fff;
+  cursor: pointer;
+
+  &.active{
+    color: ${({theme}) => theme.colors.secondary.main};
+  }
+  &:hover{
+    color: ${({theme}) => theme.colors.secondary.main};
+    transition: 0.2s ease-in-out;
+  }
+
+  &:last-child{
+    margin-top: 16px;
+  }
+`
+
+
 
 export const SideBtnContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 24px;
   svg{
     color: ${({theme}) => theme.colors.secondary.main};
     font-size: 32px;

@@ -12,7 +12,3 @@ export const Content = styled.div`
     padding-bottom: 180px;
   }
 `
-
-export const ContentModal = styled.div`
-  
-`

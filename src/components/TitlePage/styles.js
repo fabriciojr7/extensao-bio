@@ -8,19 +8,21 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   overflow-x: hidden;
+  z-index: -2;
+
   background-image: linear-gradient(to right,
     ${({ theme }) => theme.colors.background},
     ${({ theme }) => theme.colors.ternary.light},
     ${({ theme }) => theme.colors.ternary.dark},
     ${({ theme }) => theme.colors.ternary.light},
     ${({ theme }) => theme.colors.background}
-    );
+  );
 
   h1{
     font-size: 40px;
     letter-spacing: 2px;
     color: ${({ theme }) => theme.colors.brown.dark};
-    z-index: 1;
+    z-index: 0;
   }
 
   @media screen and (max-width: 600px){
@@ -42,12 +44,12 @@ export const Image = styled.div`
   &:first-child{
     position: absolute;
     left: 10px;
-    z-index: 0;
+    z-index: -1;
   }
   &:last-child{
     position: absolute;
     right: 10px;
-    z-index: 0;
+    z-index: -1;
   }
 
   @media screen and (max-width: 800px){
@@ -58,6 +60,4 @@ export const Image = styled.div`
       right: -50px;
     }
   }
-
-
 `

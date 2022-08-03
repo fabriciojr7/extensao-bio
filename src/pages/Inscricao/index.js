@@ -10,8 +10,10 @@ import useErrors from "../../hooks/useErrors";
 import Loader from "../../components/Loader";
 import { create } from "../../services/api";
 import { Alert } from "../../utils/Alert";
+import isEmailValid from "../../utils/isEmailValid";
+import formatPhone from "../../utils/formatPhone";
 
-import { Content } from './styles'
+import { Content, Text } from './styles'
 
 export default function Inscricao() {
   const [cpf, setCpf] = useState('');
@@ -48,7 +50,7 @@ export default function Inscricao() {
   }
 
   const handleFoneChange = (e) => {
-    setFone(e.target.value);
+    setFone(formatPhone(e.target.value));
 
     if (!e.target.value.trim()) {
       setError({ field: 'fone', message: 'O telefone é obrigatório.' });
@@ -117,36 +119,72 @@ export default function Inscricao() {
     if (!nome.trim()) {
       setError({ field: 'nome', message: 'O nome é obrigatório.' });
       errors = false;
+    } else {
+      if (nome.trim().length < 3) {
+        setError({ field: 'nome', message: 'O nome deve ter no mínimo 3 caracteres.' });
+        errors = false;
+      }
     }
 
     if (!fone.trim()) {
       setError({ field: 'fone', message: 'O telefone é obrigatório.' });
       errors = false;
+    } else {
+      if (fone.trim().length < 14) {
+        setError({ field: 'fone', message: 'O telefone informado é inválido.' });
+        errors = false;
+      }
     }
 
     if (!email.trim()) {
       setError({ field: 'email', message: 'O e-mail é obrigatório.' });
       errors = false;
+    } else {
+      if (email && !isEmailValid(email.trim())) {
+        setError({ field: 'email', message: 'O e-mail informado é inválido.' });
+        errors = false;
+      }
     }
 
     if (!instituicao.trim()) {
       setError({ field: 'instituicao', message: 'A instituição é obrigatória.' });
       errors = false;
+    } else {
+      if (instituicao.trim().length < 3) {
+        setError({ field: 'instituicao', message: 'A instituição deve ter no mínimo 3 caracteres.' });
+        errors = false;
+      }
     }
 
     if (!curso.trim()) {
       setError({ field: 'curso', message: 'O curso é obrigatório.' });
       errors = false;
+    } else {
+      if (curso.trim().length < 3) {
+        setError({ field: 'curso', message: 'O curso deve ter no mínimo 3 caracteres.' });
+        errors = false;
+      }
     }
 
     if (!periodo.trim()) {
       setError({ field: 'periodo', message: 'O período é obrigatório.' });
       errors = false;
+    } else {
+      if (periodo.trim().length < 3) {
+        setError({ field: 'periodo', message: 'O período deve ter no mínimo 3 caracteres.' });
+        errors = false;
+      }
     }
+
 
     if (!escolaridade.trim()) {
       setError({ field: 'escolaridade', message: 'A escolaridade é obrigatória.' });
       errors = false;
+    } else {
+      if (escolaridade.trim().length < 3) {
+        setError({ field: 'escolaridade', message: 'A escolaridade deve ter no mínimo 3 caracteres.' });
+        errors = false;
+      }
     }
 
     return errors;
@@ -167,12 +205,25 @@ export default function Inscricao() {
           escolaridade
         }
 
-        await create('pessoa', dados);
+        await create('aluno', dados);
         Alert('Sucesso', 'Inscrição efetuada, aproveite o evento.');
         navigate('/');
       } catch (error) {
         const status = error.response.data
-        Alert('Atenção', 'Erro ao efetuar inscrição: ' + status, 'error');
+        const cpfExists = status.errors.find(erro =>
+          erro.message === 'cpf deve ser único, esse cpf já foi utilizado'
+        );
+
+        const emailExists = status.errors.find(erro =>
+          erro.message === 'email deve ser único, esse email já foi utilizado'
+        );
+        if (cpfExists) {
+          Alert('Atenção', cpfExists.message, 'warning');
+        } else if (emailExists) {
+          Alert('Atenção', emailExists.message, 'warning');
+        } else {
+          Alert('Atenção', 'Erro na incrição, entre em contato com a organização', 'warning');
+        }
       } finally {
         setIsLoading(false);
       }
@@ -183,6 +234,16 @@ export default function Inscricao() {
     <>
       <TitlePage text='Inscrição' />
       {isLoading && <Loader />}
+
+
+      <Text>
+        Após o preenchimento do formulário abaixo, para a efetivação de sua inscrição na XIIIª Semana da
+        Biologia, é necessário o pagamento do valor de <span>R$ 30,00</span> que será convertido para o coffee break
+        nos intervalos de cada período do evento. Além disso, a SEMABIO promoverá uma ação beneficente e
+        solidário com doação de alimentos não perecíveis para entidades da cidade; e gostaríamos de contar
+        com seu apoio. Maiores informações serão enviadas no e-mail cadastrado no formulário.
+      </Text>
+
       <Content>
         <form noValidate>
           <FormGrouping error={getErrorsMEssageByFieldName('nome')}>
@@ -212,11 +273,11 @@ export default function Inscricao() {
               placeholder="Telefone *"
               value={fone}
               onChange={handleFoneChange}
-              maxLength={20}
+              maxLength={15}
             />
           </FormGrouping>
 
-          <FormGrouping eerror={getErrorsMEssageByFieldName('email')}>
+          <FormGrouping error={getErrorsMEssageByFieldName('email')}>
             <Input
               error={getErrorsMEssageByFieldName('email')}
               placeholder="Seu melhor e-mail *"

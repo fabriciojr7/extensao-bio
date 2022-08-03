@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Content = styled.div`
   width: 100%;
@@ -78,25 +78,3 @@ export const AreaImage = styled.div`
     }
   }
 `;
-
-
-export const Questionario = styled.a`
-  width: 300px;
-  height: 48px;
-  margin-top: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  color: #fff;
-  font-size: 18px;
-  letter-spacing: 2px;
-
-
-  ${({ theme }) => css`
-    background: linear-gradient(135deg, ${theme.colors.primary.dark}, ${theme.colors.brown.lighter});
-    &:hover{
-      background: linear-gradient(-135deg, ${theme.colors.primary.dark}, ${theme.colors.brown.lighter});
-    }
-  `}
-`

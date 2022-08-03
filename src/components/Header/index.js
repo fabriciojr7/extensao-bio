@@ -43,7 +43,9 @@ export default function Header({ toggle, modalOpened }) {
               <Link to='/envioresumo'>
                 <li>Envio de resumo</li>
               </Link>
-              <a href="https://res.cloudinary.com/arquivosfb/image/upload/v1658797408/Normas_XIII_Semabio.docx_quqgsl.pdf" target='blank'>
+              <a
+                href="https://res.cloudinary.com/arquivosfb/image/upload/v1658797408/Normas_XIII_Semabio.docx_quqgsl.pdf"
+                target='blank'>
                 <li>Normas para submissão</li>
               </a>
             </ul>
@@ -64,7 +66,7 @@ export default function Header({ toggle, modalOpened }) {
           >
             <AiOutlineInstagram />
           </a>
-          <AiOutlineMail onClick={modalOpened}/>
+          <AiOutlineMail onClick={modalOpened} />
         </NavBtn>
         <Bars onClick={toggle} />
       </Container>

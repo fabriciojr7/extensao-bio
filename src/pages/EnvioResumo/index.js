@@ -57,6 +57,11 @@ export default function EnvioResumo() {
     }
   }
 
+  const handleApoioChange = (e) => {
+    setApoio(e.target.value);
+    removeError('apoio')
+  }
+
   const handleFiliacaoChange = (e) => {
     setFiliacao(e.target.value);
 
@@ -92,27 +97,66 @@ export default function EnvioResumo() {
     if (!cpf.trim()) {
       setError({ field: 'cpf', message: 'O cpf é obrigatório.' });
       errors = false;
+    } else {
+      if (cpf.trim().length < 14) {
+        setError({ field: 'cpf', message: 'Informe um cpf válido.' });
+        errors = false;
+      }
     }
 
-    if (!titulo.trim()) {
+    if (!titulo) {
       setError({ field: 'titulo', message: 'O título é obrigatório.' });
+      errors = false;
+    } else {
+      if (titulo.trim().length < 3) {
+        setError({ field: 'titulo', message: 'Título deve ter no mínimo 3 caracteres.' });
+        errors = false;
+      }
     }
 
     if (!autores.trim()) {
       setError({ field: 'autores', message: 'O(s) autor(es) é(são) obrigatório(s).' });
+      errors = false;
+    } else {
+      if (autores.trim().length < 3) {
+        setError({ field: 'autores', message: 'Autores deve ter no mínimo 3 caracteres.' });
+        errors = false;
+      }
     }
 
     if (!filiacao.trim()) {
       setError({ field: 'filiacao', message: 'A filiação é obrigatória.' });
+      errors = false;
+    } else {
+      if (filiacao.trim().length < 3) {
+        setError({ field: 'filiacao', message: 'Filiacao deve ter no mínimo 3 caracteres.' });
+        errors = false;
+      }
     }
 
     if (!palavrasChave.trim()) {
       setError({ field: 'palavrasChave', message: 'As palavras-chave são obrigatórias.' });
+      errors = false;
+    } else {
+      if (palavrasChave.trim().length < 3) {
+        setError({ field: 'palavrasChave', message: 'As palavras-chave devem ter no mínimo 3 caracteres.' });
+        errors = false;
+      }
+    }
+
+    if (apoio && apoio.trim().length < 3) {
+      setError({ field: 'apoio', message: 'Apoio deve ter no mínimo 3 caracteres.' });
+      errors = false;
     }
 
     if (!resumo.trim()) {
       setError({ field: 'resumo', message: 'O resumo é obrigatório.' });
       errors = false;
+    } else {
+      if (resumo.trim().length < 3) {
+        setError({ field: 'resumo', message: 'Resumo deve ter no mínimo 3 caracteres.' });
+        errors = false;
+      }
     }
 
     return errors;
@@ -124,7 +168,7 @@ export default function EnvioResumo() {
       try {
         setIsLoading(true);
         const dados = {
-          pessoaCpf: cpf,
+          alunoCpf: cpf,
           titulo,
           autores,
           filiacao,
@@ -138,8 +182,28 @@ export default function EnvioResumo() {
         Alert('Sucesso', 'Resumo enviado.');
         navigate('/');
       } catch (error) {
-        const status = error.response.data
-        Alert('Atenção', 'Erro ao enviar resumo: ' + status, 'error');
+        const status = error.response.data.message;
+        const errors = error.response.data.errors;
+
+        if (errors) {
+          const cpfExists = errors.find(erro => {
+            if (erro.message.indexOf('alunoCpf deve existir na tabela') !== -1) {
+              return true;
+            } else {
+              return false;
+            }
+          });
+
+          if (cpfExists) {
+            Alert('Atenção', 'O cpf informado não está cadastrado, realize a inscrição para enviar o resumo.', 'warning');
+          }
+        } else {
+          if (status.indexOf('Esse CPF já enviou o número máximo de Resumos') !== -1) {
+            Alert('Atenção', status, 'warning');
+          } else {
+            Alert('Atenção', 'Erro ao enviar resumo, entre em contato com a organização.', 'error');
+          }
+        }
       } finally {
         setIsLoading(false);
       }
@@ -194,11 +258,12 @@ export default function EnvioResumo() {
               />
             </FormGrouping>
 
-            <FormGrouping>
+            <FormGrouping error={getErrorsMEssageByFieldName('apoio')}>
               <Input
+                error={getErrorsMEssageByFieldName('apoio')}
                 placeholder="Apoio"
                 value={apoio}
-                onChange={(e) => setApoio(e.target.value)}
+                onChange={handleApoioChange}
                 maxLength={128}
               />
             </FormGrouping>

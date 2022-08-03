@@ -6,19 +6,22 @@ import Button from "../../../components/Button";
 import formatCpf from "../../../utils/formatCpf";
 import { getDados, updateCampo } from "../../../services/api";
 import Loader from "../../../components/Loader";
-import { Alert, ConfirmeAlert } from "../../../utils/Alert";
+import { Alert } from "../../../utils/Alert";
+import CronogramaPresencas from "../components/CronogramaPresencas";
 
 import {
   Form, Line, ContentForm, ContentDados,
-  Presenca, ContentPresenca, LineContent
+  ContentPresenca, LineContent
 } from "./styles";
 
 export default function Dashboard() {
   const [cpf, setCpf] = useState('');
   const [pessoa, setPessoa] = useState({});
   const [preseca, setPresenca] = useState({});
+  const [palestras, setPalestras] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [visible, setSetvisible] = useState(false);
+  const [miniCursos, setMiniCursos] = useState([]);
 
   const getDadosParticipante = async () => {
     try {
@@ -28,22 +31,75 @@ export default function Dashboard() {
           return;
         }
         setIsLoading(true);
-        const { data } = await getDados(`pessoa/${cpf}`);
+        const { data } = await getDados(`presenca/${cpf}`);
+
         setPessoa({
-          id: data.data.id,
-          cpf_pessoa: data.data.cpf,
-          nome: data.data.nome_completo,
-          email: data.data.email,
-          fone: data.data.fone
+          id: data.data[0].id,
+          cpf_pessoa: data.data[0].cpf,
+          nome: data.data[0].nome_completo,
+          email: data.data[0].email,
+          fone: data.data[0].fone,
+          curso: data.data[0].curso,
+          pagamento: data.data[0].pagamento
         });
         setPresenca({
-          presenca1: data.data.palestra1,
-          presenca2: data.data.palestra2,
-          presenca3: data.data.palestra3,
-          presenca4: data.data.palestra4,
-          presenca5: data.data.palestra5,
-          presenca6: data.data.palestra6,
+          palestra1: data.data.palestra1,
+          palestra2: data.data.palestra2,
+          palestra3: data.data.palestra3,
+          palestra4: data.data.palestra4,
+          palestra5: data.data.palestra5,
+          palestra6: data.data.palestra6,
+          palestra7: data.data.palestra7,
+          palestra8: data.data.palestra8,
+          roda: data.data.roda,
+          miniCurso1: data.data.miniCurso1,
+          miniCurso2: data.data.miniCurso2,
+          miniCurso3: data.data.miniCurso3,
+          miniCurso4: data.data.miniCurso4,
+          miniCurso5: data.data.miniCurso5,
+          miniCurso6: data.data.miniCurso6,
         });
+
+        setMiniCursos([
+          {
+            id: 1,
+            idPresenca: data.data[0].palestras[9].idPresenca,
+            titulo: data.data[0].palestras[9].titulo,
+            presente: data.data[0].palestras[9].presente
+          },
+          {
+            id: 2,
+            idPresenca: data.data[0].palestras[10].idPresenca,
+            titulo: data.data[0].palestras[10].titulo,
+            presente: data.data[0].palestras[10].presente
+          },
+          {
+            id: 3,
+            idPresenca: data.data[0].palestras[11].idPresenca,
+            titulo: data.data[0].palestras[11].titulo,
+            presente: data.data[0].palestras[11].presente
+          },
+          {
+            id: 4,
+            idPresenca: data.data[0].palestras[12].idPresenca,
+            titulo: data.data[0].palestras[12].titulo,
+            presente: data.data[0].palestras[12].presente
+          },
+          {
+            id: 5,
+            idPresenca: data.data[0].palestras[13].idPresenca,
+            titulo: data.data[0].palestras[13].titulo,
+            presente: data.data[0].palestras[13].presente
+          },
+          {
+            id: 6,
+            idPresenca: data.data[0].palestras[14].idPresenca,
+            titulo: data.data[0].palestras[14].titulo,
+            presente: data.data[0].palestras[14].presente
+          }
+        ]);
+
+        setPalestras(data.data[0].palestras)
         setSetvisible(true);
       } else {
         Alert('Atenção', 'O CPF precisa ser informado', 'warning');
@@ -60,12 +116,21 @@ export default function Dashboard() {
     }
   }
 
-  const handlePresenca = async (dados) => {
+  const handlePresenca = async (idPresenca, dado) => {
     try {
-      await updateCampo(`pessoa/${pessoa.id}`, dados);
+      await updateCampo(`presenca/${idPresenca}`, dado);
       getDadosParticipante();
     } catch (error) {
       Alert('Atenção', 'Erro ao registrar presença: ' + error, 'error');
+    }
+  }
+
+  const handleEfetivarInscricao = async () => {
+
+    try {
+      await updateCampo(`aluno/${pessoa.id}`, { 'pagamento': true });
+    } catch (error) {
+      Alert('Atenção', 'Erro ao aceitar inscrição: ' + error, 'error');
     }
   }
 
@@ -117,6 +182,13 @@ export default function Dashboard() {
           </LineContent>
 
           <LineContent>
+            <span>Curso:</span>
+            <h2>
+              {pessoa.curso}
+            </h2>
+          </LineContent>
+
+          <LineContent>
             <span>E-mail:</span>
             <h2>
               {pessoa.email}
@@ -129,78 +201,21 @@ export default function Dashboard() {
               {pessoa.fone}
             </h2>
           </LineContent>
-          <Line />
+
         </ContentDados>
 
-        <Presenca>
-          <h1>Lista de presença</h1>
-          <li>
-            <span>Palestra 1: </span> {preseca.presenca1 ? 'Prensença já confirmada' :
-              <button
-                onClick={() =>
-                  ConfirmeAlert({
-                    titlePergunta: 'Deseja confirmar a presença?'
-                  }, () => handlePresenca({ 'palestra1': true }))}
-              >
-                Confirmar presença
-              </button>}
-          </li>
-          <li>
-            <span>Palestra 2: </span> {preseca.presenca2 ? 'Prensença já confirmada' :
-              <button
-                onClick={() =>
-                  ConfirmeAlert({
-                    titlePergunta: 'Deseja confirmar a presença?'
-                  }, () => handlePresenca({ 'palestra2': true }))}
-              >
-                Confirmar presença
-              </button>}
-          </li>
-          <li>
-            <span>Palestra 3: </span> {preseca.presenca3 ? 'Prensença já confirmada' :
-              <button
-                onClick={() =>
-                  ConfirmeAlert({
-                    titlePergunta: 'Deseja confirmar a presença?'
-                  }, () => handlePresenca({ 'palestra3': true }))}
-              >
-                Confirmar presença
-              </button>}
-          </li>
-          <li>
-            <span>Palestra 4: </span> {preseca.presenca4 ? 'Prensença já confirmada' :
-              <button
-                onClick={() =>
-                  ConfirmeAlert({
-                    titlePergunta: 'Deseja confirmar a presença?'
-                  }, () => handlePresenca({ 'palestra4': true }))}
-              >
-                Confirmar presença
-              </button>}
-          </li>
-          <li>
-            <span>Palestra 5: </span> {preseca.presenca5 ? 'Prensença já confirmada' :
-              <button
-                onClick={() =>
-                  ConfirmeAlert({
-                    titlePergunta: 'Deseja confirmar a presença?'
-                  }, () => handlePresenca({ 'palestra5': true }))}
-              >
-                Confirmar presença
-              </button>}
-          </li>
-          <li>
-            <span>Palestra 6: </span> {preseca.presenca6 ? 'Prensença já confirmada' :
-              <button
-                onClick={() =>
-                  ConfirmeAlert({
-                    titlePergunta: 'Deseja confirmar a presença?'
-                  }, () => handlePresenca({ 'palestra6': true }))}
-              >
-                Confirmar presença
-              </button>}
-          </li>
-        </Presenca>
+        {pessoa.pagamento ? (
+          <CronogramaPresencas
+            presenca={preseca}
+            func={handlePresenca}
+            palestras={palestras}
+            miniCursos={miniCursos}
+          />
+        ) : <button
+          onClick={() => handleEfetivarInscricao()}
+        >
+          Efetivar inscrição
+        </button>}
       </ContentPresenca>
     </>
   )

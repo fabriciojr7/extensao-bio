@@ -74,13 +74,15 @@ export const NavOptions = styled.div`
   position: relative;
 
   letter-spacing: 1px;  
+  
 
   &:hover{
     color: ${({ theme }) => theme.colors.primary.dark};
     
     ul{
       padding-top: 16px;
-      display: block;            
+      display: block;      
+
       li:hover{
         background: ${({ theme }) => theme.colors.brown.light};
       }                      
@@ -91,7 +93,7 @@ export const NavOptions = styled.div`
     display: none;
     width: 200px;
     position: absolute;
-    z-index: 1;
+    z-index: 10;
     
     li{
       padding: 12px 8px;

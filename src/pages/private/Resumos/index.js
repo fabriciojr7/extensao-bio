@@ -6,6 +6,7 @@ import Table from "../components/Table";
 import InputSearch from "../components/InputSearch";
 import { listagem } from "../../../services/api";
 import Loader from "../../../components/Loader";
+import { Alert } from "../../../utils/Alert";
 
 import { Container, SubHeader, Count } from "./styles.js";
 
@@ -22,7 +23,7 @@ export default function Resumos() {
       const { data } = await listagem('resumo');
       setResumos(data.data);
     } catch {
-      console.log('deu erro')
+      Alert('Atenção', "Erro ao carregar a lista de resumos.", 'error');
     } finally {
       setIsLoading(false);
     }
@@ -79,7 +80,7 @@ export default function Resumos() {
               >
                 <td className="text" data-title="Autores">{resumo.autores}</td>
                 <td className="text" data-title="Título">{resumo.titulo}</td>
-                <td data-title="CPF">{resumo.pessoa_cpf}</td>
+                <td data-title="CPF">{resumo.aluno_cpf}</td>
               </tr>
             ))
           }
