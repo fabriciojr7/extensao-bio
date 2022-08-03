@@ -14,8 +14,9 @@ export default function ModalPalestra({ toggleModal, palestra }) {
     // func={enviarMensagemContato}
     >
       <ContentModal>
-        {palestra.horario}
-        {palestra.descricao}
+        <p>{palestra.horario && `Horário: ${palestra.horario}`}</p>
+        <p>{palestra.palestrante && `Palestrante: ${palestra.palestrante}`}</p>
+        
         <img src={palestra.foto} alt="" />
         {palestra.resumo}
       </ContentModal>

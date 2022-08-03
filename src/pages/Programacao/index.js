@@ -1,7 +1,7 @@
 import { useState } from 'react';
-// import ModalPalestra from '../../components/ModalPalestra';
+//import ModalPalestra from '../../components/ModalPalestra';
 import TitlePage from "../../components/TitlePage";
-import { dia1, dia2, dia3 } from '../Apresentacao/dataProgramacao';
+import { dia1, dia2, dia3 } from "./dataProgramacao";
 
 import {
   Container, TabHead, Tab, TabBody, TabContent,
@@ -56,7 +56,7 @@ export default function Programacao() {
                   </Informacoes>
                   <Evento>
                     <h1>{dia.tema}</h1>
-                    <span>{dia.palestrante}</span>
+                    <span>{dia.palestrante && `Palestrantes: ${dia.palestrante}`}</span>
                   </Evento>
                 </Card>
               ))
@@ -72,7 +72,7 @@ export default function Programacao() {
                   </Informacoes>
                   <Evento>
                     <h1>{dia.tema}</h1>
-                    <span>{dia.palestrante}</span>
+                    <span>{dia.palestrante && `Palestrantes: ${dia.palestrante}`}</span>
                   </Evento>
                 </Card>
               ))
@@ -89,7 +89,7 @@ export default function Programacao() {
                   </Informacoes>
                   <Evento>
                     <h1>{dia.tema}</h1>
-                    <span>{dia.palestrante}</span>
+                    <span>{dia.palestrante && `Palestrantes: ${dia.palestrante}`}</span>
                   </Evento>
                 </Card>
               ))
@@ -97,7 +97,7 @@ export default function Programacao() {
           </TabContent>
         </TabBody>
       </Container>
-      {/* <ModalPalestra palestra={dia1[0]} /> */}
+      {/*<ModalPalestra palestra={dia1[0]} />*/}
     </>
   )
 }

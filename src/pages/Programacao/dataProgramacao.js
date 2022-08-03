@@ -19,70 +19,111 @@ export const dia1 = [
     horario: '07:30 às 08:00',
     local: 'Anfiteatro Dercir',
     tema: 'Abertura',
-    palestrante: ''
+    palestrante: '',
+    resumo: `
+  
+    `,
+    foto: palestrante1
+    
   },
   {
     id: 3,
     horario: '08:00 às 09:30',
     local: 'Anfiteatro Dercir',
     tema: 'Palestra 1: Tatu Canastra',
-    palestrante: ''
+    palestrante: '',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 4,
     horario: '09:30 às 10:00',
     local: 'Anfiteatro Dercir',
     tema: 'Coffee break',
-    palestrante: ''
+    palestrante: '',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 5,
     horario: '10:00 às 11:00',
     local: 'Anfiteatro Dercir',
     tema: 'Palestra 2: SENAI Biomassas (Botânica)',
-    palestrante: ''
+    palestrante: '',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 6,
     horario: '11:00 às 13:00',
     local: 'Almoço',
     tema: 'Almoço',
-    palestrante: ''
+    palestrante: '',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 7,
     horario: '13:00 às 14:00',
     local: 'Anfiteatro Geografia',
-    tema: 'Palestra 3: Da escola que temos à escola que queremos para todos',
-    palestrante: 'Fernando Rogerio de Carvalho'
+    tema: 'Palestra 3: Estado da arte dos peixes de Mato Grosso do Sul',
+    palestrante: 'Fernando Rogerio de Carvalho',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 8,
     horario: '14:00 às 15:00',
     local: 'Anfiteatro Geografia',
     tema: 'Palestra 4: Da escola que temos à escola que queremos para todos',
-    palestrante: 'Jose Eduardo de Oliveira Evangelista Lanuti'
+    palestrante: 'Jose Eduardo de Oliveira Evangelista Lanuti',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 9,
     horario: '15:00 às 15:15',
     local: 'Anfiteatro Geografia',
     tema: 'Coffee break',
-    palestrante: ''
+    palestrante: '',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 10,
     horario: '15:15 às 16:15',
     local: 'Anfiteatro Geografia',
     tema: 'Palestra 5',
-    palestrante: 'Flavio Fardin'
+    palestrante: 'Flavio Fardin',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 11,
     horario: '16:15',
     local: 'Anfiteatro Geografia',
     tema: 'Palestra 6',
-    palestrante: 'Lucas Gazarini'
+    palestrante: 'Lucas Gazarini',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
 ]
 
@@ -92,42 +133,66 @@ export const dia2 = [
     horario: '07:00 às 11:00',
     local: 'Bloco 6 - Área aberta',
     tema: 'Apresentação de trabalhos e visita guiada de alunos do ensino médio',
-    palestrante: ''
+    palestrante: '',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 2,
     horario: '11:00 às 13:00',
     local: 'Almoço',
     tema: 'Almoço',
-    palestrante: ''
+    palestrante: '',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 3,
     horario: '13:00 às 15:00',
     local: 'Anfiteatro Geografia',
     tema: 'Roda de tereré e Empreendedorismo:',
-    palestrante: 'Natalia (Novo Horizonte) / Educação (Renan Garcia) / Startup com fomento (Cario de Oliveira)'
+    palestrante: 'Natalia / Renan Garcia / Cario de Oliveira',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 4,
     horario: '15:00 às 15:15',
     local: 'Anfiteatro Geografia',
     tema: 'Coffee break',
-    palestrante: ''
+    palestrante: '',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 5,
     horario: '15:15 às 16:15',
     local: 'Anfiteatro Geografia',
-    tema: 'Palestra 7: Zoo de Ilha',
-    palestrante: ''
+    tema: 'Palestra 7',
+    palestrante: '',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 6,
-    horario: '16:15 às 17:15',
+    horario: '16:15',
     local: 'Anfiteatro Geografia',
-    tema: 'Palestra 8: Botânica (UNESP Ilha)',
-    palestrante: ''
+    tema: 'Palestra 8',
+    palestrante: '',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
 ]
 
@@ -137,13 +202,24 @@ export const dia3 = [
     horario: '07:00 às 11:00',
     local: 'Multiplas salas',
     tema: 'Ofincinas e minicursos',
-    palestrante: 'Jennifer Caroline de Sousa, Prof. Dr. Hélder Silva e Luna (CPTL/UFMS), Rodney Murillo Peixoto Couto, Edis Belini Júnior, Rodrigo Satoro Mizobe'
+    palestrante: `
+    Jennifer Caroline de Sousa / Prof. Dr. Hélder Silva e Luna (CPTL/UFMS) / Rodney Murillo Peixoto Couto 
+    / Edis Belini Júnior / Rodrigo Satoro Mizobe
+    `,
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
   {
     id: 2,
     horario: '11:00',
     local: 'ADUFMS',
     tema: 'Almoço - PL confraternização',
-    palestrante: ''
+    palestrante: '',
+    resumo: `
+  
+    `,
+    foto: palestrante1
   },
 ]
