@@ -1,5 +1,5 @@
 import { useState } from 'react';
-//import ModalPalestra from '../../components/ModalPalestra';
+// import ModalPalestra from '../../components/ModalPalestra';
 import TitlePage from "../../components/TitlePage";
 import { dia1, dia2, dia3 } from "./dataProgramacao";
 
@@ -97,7 +97,7 @@ export default function Programacao() {
           </TabContent>
         </TabBody>
       </Container>
-      {/*<ModalPalestra palestra={dia1[0]} />*/}
+      {/* <ModalPalestra palestra={dia1[10]} /> */}
     </>
   )
 }

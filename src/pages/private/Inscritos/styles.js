@@ -4,10 +4,18 @@ export const Container = styled.div`
   svg{
     font-size: 20px;
     &.presenca{
-      color: ${({theme}) => theme.colors.primary.dark};
+      color: ${({ theme }) => theme.colors.primary.dark};
     }
     &.falta{
-      color: ${({theme}) => theme.colors.danger.dark};
+      color: ${({ theme }) => theme.colors.danger.dark};
+    }
+  }
+
+
+  table{
+    td p{      
+      color: ${({ theme }) => theme.colors.primary.dark};
+      font-weight: bold;     
     }
   }
 `
@@ -18,12 +26,12 @@ export const SubHeader = styled.div`
   justify-content: space-between;
   padding: 16px 0;
   margin-bottom: 16px;
-  border-bottom: 2px solid ${({theme}) => theme.colors.gray[500]};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.gray[500]};
 `
 
 export const Count = styled.div`
   h3{
-    color: ${({theme}) => theme.colors.gray[600]};
+    color: ${({ theme }) => theme.colors.gray[600]};
     font-size: 24px;
   }
 `

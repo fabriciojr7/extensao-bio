@@ -206,7 +206,7 @@ export default function Inscricao() {
         }
 
         await create('aluno', dados);
-        Alert('Sucesso', 'Inscrição efetuada, aproveite o evento.');
+        Alert('Sucesso', 'Inscrição efetuada, verifique o e-mail para receber mais detalhes e aproveite o evento!');
         navigate('/');
       } catch (error) {
         const status = error.response.data

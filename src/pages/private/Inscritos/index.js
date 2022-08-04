@@ -31,6 +31,24 @@ export default function Inscritos() {
     getInscritos();
   }, []);
 
+  const miniCursoTable = (inscrito) => {
+    if (inscrito?.palestras[8]?.presente) {
+      return inscrito?.palestras[8];
+    } else if (inscrito?.palestras[9]?.presente) {
+      return inscrito?.palestras[9];
+    } else if (inscrito?.palestras[10]?.presente) {
+      return inscrito?.palestras[10];
+    } else if (inscrito?.palestras[11]?.presente) {
+      return inscrito?.palestras[11];
+    } else if (inscrito?.palestras[12]?.presente) {
+      return inscrito?.palestras[12];
+    } else if (inscrito?.palestras[13]?.presente) {
+      return inscrito?.palestras[13];
+    } else {
+      return { id: 7, titulo: 'MiniCurso', presente: false };
+    }
+  }
+
   const filteredInscritos = useMemo(() => inscritos.filter((inscrito) => (
     inscrito.nome_completo.toLowerCase().includes(searchTerm.toLowerCase())
     || inscrito.cpf.includes(searchTerm)
@@ -70,7 +88,9 @@ export default function Inscritos() {
             <th>P-7</th>
             <th>P-8</th>
             <th>Roda</th>
-            <th>Minicurso</th>
+            <th>
+              MiniCurso
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -97,8 +117,10 @@ export default function Inscritos() {
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
                 <td data-title="P-5">{inscrito.palestras[8].presente ?
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
-                <td data-title="P-6">{inscrito.palestras[9].presente ?
-                  <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
+                <td data-title="P-6">{miniCursoTable(inscrito)?.presente ?                   
+                    <p>{miniCursoTable(inscrito)?.titulo}</p>               
+                  : <FaTimesCircle className="falta" />
+                }</td>
               </tr>
             ))
           }

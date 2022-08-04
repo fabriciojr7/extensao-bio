@@ -7,7 +7,7 @@ import { Alert, ConfirmeAlert } from "../../../../utils/Alert";
 import Select from "../../../../components/Select";
 import { useEffect, useState } from "react";
 
-export default function CronogramaPresencas({ presenca, func, palestras, miniCursos }) {
+export default function CronogramaPresencas({ func, palestras, miniCursos }) {
   const [curso, setCurso] = useState(0);
   const [presente, setPresente] = useState(false);
 
@@ -237,16 +237,16 @@ export default function CronogramaPresencas({ presenca, func, palestras, miniCur
               </button>
             </td>
 
-            <td className={palestras[7]?.presente && "confirmada"}>
-              <p>Palestra 8 -</p>
+            <td className={palestras[6]?.presente && "confirmada"}>
+              <p>Palestra 7 - Saúde?</p>
               <button
                 onClick={() =>
                   ConfirmeAlert({
-                    titlePergunta: palestras[7]?.presente ?
+                    titlePergunta: palestras[6]?.presente ?
                       'Deseja remover a presença?' : 'Deseja confirmar a presença?'
-                  }, () => func(palestras[7]?.idPresenca, { 'presente': !palestras[7]?.presente }))}
+                  }, () => func(palestras[6]?.idPresenca, { 'presente': !palestras[6]?.presente }))}
               >
-                {palestras[7]?.presente ? 'Remover presença' : 'Confirmar presença'}
+                {palestras[6]?.presente ? 'Remover presença' : 'Confirmar presença'}
               </button>
             </td>
           </tr>
@@ -266,30 +266,31 @@ export default function CronogramaPresencas({ presenca, func, palestras, miniCur
               </button>
             </td>
 
-            <td>
-              <p>Palestra 9</p>
-            </td>
-          </tr>
-
-          <tr>
-            <th>17:15</th>
-            <td className={palestras[6]?.presente && "confirmada"}>
-              <p>Palestra 7 - Saúde?</p>
+            <td className={palestras[7]?.presente && "confirmada"}>
+              <p>Palestra 8</p>
               <button
                 onClick={() =>
                   ConfirmeAlert({
-                    titlePergunta: palestras[6]?.presente ?
+                    titlePergunta: palestras[7]?.presente ?
                       'Deseja remover a presença?' : 'Deseja confirmar a presença?'
-                  }, () => func(palestras[6]?.idPresenca, { 'presente': !palestras[6]?.presente }))}
+                  }, () => func(palestras[7]?.idPresenca, { 'presente': !palestras[7]?.presente }))}
               >
-                {palestras[6]?.presente ? 'Remover presença' : 'Confirmar presença'}
+                {palestras[7]?.presente ? 'Remover presença' : 'Confirmar presença'}
               </button>
+            </td>
+          </tr>
+
+          {/* <tr>
+            <th>17:15</th>
+            <td className={palestras[6]?.presente && "confirmada"}>
+              <p>Palestra 7 - Saúde?</p>
+
             </td>
 
             <td>
               <p>Palestra 10</p>
             </td>
-          </tr>
+          </tr> */}
         </thead>
       </Table>
     </Container>

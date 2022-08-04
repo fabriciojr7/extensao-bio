@@ -6,22 +6,22 @@ import Button from "../../../components/Button";
 import formatCpf from "../../../utils/formatCpf";
 import { getDados, updateCampo } from "../../../services/api";
 import Loader from "../../../components/Loader";
-import { Alert } from "../../../utils/Alert";
+import { Alert, ConfirmeAlert } from "../../../utils/Alert";
 import CronogramaPresencas from "../components/CronogramaPresencas";
 
 import {
   Form, Line, ContentForm, ContentDados,
-  ContentPresenca, LineContent
+  ContentPresenca, LineContent, ContentEfetivacao
 } from "./styles";
 
 export default function Dashboard() {
   const [cpf, setCpf] = useState('');
   const [pessoa, setPessoa] = useState({});
-  const [preseca, setPresenca] = useState({});
   const [palestras, setPalestras] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [visible, setSetvisible] = useState(false);
   const [miniCursos, setMiniCursos] = useState([]);
+  const [efetivado, setEfetivado] = useState(false);
 
   const getDadosParticipante = async () => {
     try {
@@ -42,64 +42,48 @@ export default function Dashboard() {
           curso: data.data[0].curso,
           pagamento: data.data[0].pagamento
         });
-        setPresenca({
-          palestra1: data.data.palestra1,
-          palestra2: data.data.palestra2,
-          palestra3: data.data.palestra3,
-          palestra4: data.data.palestra4,
-          palestra5: data.data.palestra5,
-          palestra6: data.data.palestra6,
-          palestra7: data.data.palestra7,
-          palestra8: data.data.palestra8,
-          roda: data.data.roda,
-          miniCurso1: data.data.miniCurso1,
-          miniCurso2: data.data.miniCurso2,
-          miniCurso3: data.data.miniCurso3,
-          miniCurso4: data.data.miniCurso4,
-          miniCurso5: data.data.miniCurso5,
-          miniCurso6: data.data.miniCurso6,
-        });
 
         setMiniCursos([
           {
             id: 1,
+            idPresenca: data.data[0].palestras[8].idPresenca,
+            titulo: data.data[0].palestras[8].titulo,
+            presente: data.data[0].palestras[8].presente
+          },
+          {
+            id: 2,
             idPresenca: data.data[0].palestras[9].idPresenca,
             titulo: data.data[0].palestras[9].titulo,
             presente: data.data[0].palestras[9].presente
           },
           {
-            id: 2,
+            id: 3,
             idPresenca: data.data[0].palestras[10].idPresenca,
             titulo: data.data[0].palestras[10].titulo,
             presente: data.data[0].palestras[10].presente
           },
           {
-            id: 3,
+            id: 4,
             idPresenca: data.data[0].palestras[11].idPresenca,
             titulo: data.data[0].palestras[11].titulo,
             presente: data.data[0].palestras[11].presente
           },
           {
-            id: 4,
+            id: 5,
             idPresenca: data.data[0].palestras[12].idPresenca,
             titulo: data.data[0].palestras[12].titulo,
             presente: data.data[0].palestras[12].presente
           },
           {
-            id: 5,
+            id: 6,
             idPresenca: data.data[0].palestras[13].idPresenca,
             titulo: data.data[0].palestras[13].titulo,
             presente: data.data[0].palestras[13].presente
-          },
-          {
-            id: 6,
-            idPresenca: data.data[0].palestras[14].idPresenca,
-            titulo: data.data[0].palestras[14].titulo,
-            presente: data.data[0].palestras[14].presente
           }
         ]);
 
-        setPalestras(data.data[0].palestras)
+        setEfetivado(data.data[0].pagamento);
+        setPalestras(data.data[0].palestras);
         setSetvisible(true);
       } else {
         Alert('Atenção', 'O CPF precisa ser informado', 'warning');
@@ -126,11 +110,14 @@ export default function Dashboard() {
   }
 
   const handleEfetivarInscricao = async () => {
-
     try {
+      setIsLoading(true);
       await updateCampo(`aluno/${pessoa.id}`, { 'pagamento': true });
+      setEfetivado(true);
     } catch (error) {
       Alert('Atenção', 'Erro ao aceitar inscrição: ' + error, 'error');
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -141,18 +128,20 @@ export default function Dashboard() {
 
   return (
     <>
-      <HeaderPage title='Sistema para registro de presenças' />
+      <HeaderPage title='Registro de presenças' />
 
       {isLoading && <Loader />}
       <Line />
 
       <ContentForm>
+        <h2>Informe o CPF para buscar o participante</h2>
+
         <Form onSubmit={handleBuscaCpf}>
           <FormGrouping>
             <Input
               value={cpf}
               onChange={(e) => setCpf(formatCpf(e.target.value))}
-              placeholder="Informe o cpf do participante"
+              placeholder="Informe o cpf"
               autoFocus
               maxLength={14}
             />
@@ -204,18 +193,30 @@ export default function Dashboard() {
 
         </ContentDados>
 
-        {pessoa.pagamento ? (
+        {efetivado ? (
           <CronogramaPresencas
-            presenca={preseca}
             func={handlePresenca}
             palestras={palestras}
             miniCursos={miniCursos}
           />
-        ) : <button
-          onClick={() => handleEfetivarInscricao()}
-        >
-          Efetivar inscrição
-        </button>}
+        ) : (
+
+          <ContentEfetivacao>
+            <p>Para registrar as presenças do participante <span>{pessoa.nome}</span>, verifique
+              se o pagamento foi realizado, e efetive a presença.
+            </p>
+            <Button
+              // onClick={() => handleEfetivarInscricao()}
+
+              onClick={() =>
+                ConfirmeAlert({
+                  titlePergunta: `Deseja efetivar a inscrição do participante ${pessoa.nome}`
+                }, () => handleEfetivarInscricao())}
+            >
+              Efetivação de inscrição
+            </Button>
+          </ContentEfetivacao>
+        )}
       </ContentPresenca>
     </>
   )

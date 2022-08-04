@@ -10,6 +10,12 @@ export const ContentForm = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  h2{
+    color: ${({ theme }) => theme.colors.gray[600]};
+    font-size: 22px;
+    padding-bottom: 32px;
+  }
 `
 
 export const Line = styled.div`
@@ -64,5 +70,22 @@ export const ContentPresenca = styled.div`
 
     text-align: center;
     margin-bottom: 16px;
+  }
+`
+
+export const ContentEfetivacao = styled.div`
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  margin-top: 32px;
+
+  p{
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 16px;
+    span{
+      color: ${({ theme }) => theme.colors.primary.dark};
+      font-weight: bold;
+    }
   }
 `
