@@ -83,6 +83,8 @@ export const ContentEfetivacao = styled.div`
     text-align: center;
     margin-bottom: 16px;
     font-size: 16px;
+    line-height: 24px;
+
     span{
       color: ${({ theme }) => theme.colors.primary.dark};
       font-weight: bold;

@@ -1,11 +1,11 @@
-// import murilo from '../../assets/images/palestrantes/Murilo.jpeg';
+import murilo from '../../assets/images/palestrantes/Murilo.jpeg';
 import lucas from '../../assets/images/palestrantes/Lucas Gazarini.jpeg';
 import jose from '../../assets/images/palestrantes/Jose Eduardo.jpg';
-// import helder from '../../assets/images/palestrantes/Helder.JPG';
+import helder from '../../assets/images/palestrantes/Helder.JPG';
 import gabriel from '../../assets/images/palestrantes/Gabriel Massocato.jpg';
-// import jennifer from '../../assets/images/palestrantes/jennifer.jpg';
-// import belini from '../../assets/images/palestrantes/Edis Belini.jpeg';
-import palestrante1 from '../../assets/images/palestrantes/raj.jpg';
+import jennifer from '../../assets/images/palestrantes/jennifer.jpg';
+import belini from '../../assets/images/palestrantes/Edis Belini.jpeg';
+import caio from '../../assets/images/palestrantes/caio.png';
 
 export const dia1 = [
   {
@@ -54,7 +54,6 @@ export const dia1 = [
     tema: 'Palestra 2: SENAI Biomassas (Botânica)',
     palestrante: '',
     resumo: ``,
-    foto: palestrante1
   },
   {
     id: 6,
@@ -62,10 +61,7 @@ export const dia1 = [
     local: 'Almoço',
     tema: 'Almoço',
     palestrante: '',
-    resumo: `
-
-    `,
-    foto: palestrante1
+    resumo: ``,
   },
   {
     id: 7,
@@ -74,7 +70,6 @@ export const dia1 = [
     tema: 'Palestra 3: Estado da arte dos peixes de Mato Grosso do Sul',
     palestrante: 'Fernando Rogerio de Carvalho',
     resumo: ``,
-    foto: palestrante1
   },
   {
     id: 8,
@@ -103,7 +98,6 @@ export const dia1 = [
     tema: 'Palestra 5',
     palestrante: 'Flavio Fardin',
     resumo: ``,
-    foto: palestrante1
   },
   {
     id: 11,
@@ -125,8 +119,7 @@ export const dia2 = [
     local: 'Bloco 6 - Área aberta',
     tema: 'Apresentação de trabalhos e visita guiada de alunos do ensino médio',
     palestrante: '',
-    resumo: ``,
-    foto: palestrante1
+    resumo: ``
   },
   {
     id: 2,
@@ -134,21 +127,28 @@ export const dia2 = [
     local: 'Almoço',
     tema: 'Almoço',
     palestrante: '',
-    resumo: `
-
-    `,
-    foto: palestrante1
+    resumo: ``,
   },
   {
     id: 3,
     horario: '13:00 às 15:00',
     local: 'Anfiteatro Geografia',
     tema: 'Roda de tereré e Empreendedorismo:',
-    palestrante: 'Natalia / Renan Garcia / Cario de Oliveira',
-    resumo: `
+    titulo:'É possível empreender com financiamento governamental?',
+    palestrante: 'Caio Fernando Ramalho de Oliveira',
+    resumo: `O empreendorismo está em pleno crescimento no Brasil. Algumas áreas, como a pesquisa em Ciências Biológicas, podem se beneficiar
+    de uma série de projetos de inovação financiados por ações governamentais. Assim, o caminho do empreendorismo para futuros biólogos será
+    apresentado, bem como alguns editais de financiamento, experiências e exemplos de sucesso. Iremos mostrar que é possível tirar a sua ideia do papel,
+    captar recursos e obter parceiros para o desenvolvimento de um negócio de sucesso.`,
+    foto: caio,
+    palestrante2: 'Renan Garcia de Oliveira',
+    resumo2: ``,
 
-    `,
-    foto: palestrante1
+    palestrante3: 'Natália Gaspar Munhoz Ciocca',
+    resumo3: `O empreendorismo está em pleno crescimento no Brasil. Algumas áreas, como a pesquisa em Ciências Biológicas, podem se beneficiar de uma
+    série de projetos de inovação financiados por ações governamentais. Assim, o caminho do empreendorismo para futuros biólogos será apresentado, bem
+    como alguns editais de financiamento, experiências e exemplos de sucesso. Iremos mostrar que é possível tirar a sua ideia do papel, captar recursos e
+    obter parceiros para o desenvolvimento de um negócio de sucesso.`,
   },
   {
     id: 4,
@@ -156,10 +156,7 @@ export const dia2 = [
     local: 'Anfiteatro Geografia',
     tema: 'Coffee break',
     palestrante: '',
-    resumo: `
-
-    `,
-    foto: palestrante1
+    resumo: ``,
   },
   {
     id: 5,
@@ -167,10 +164,7 @@ export const dia2 = [
     local: 'Anfiteatro Geografia',
     tema: 'Palestra 7',
     palestrante: '',
-    resumo: `
-
-    `,
-    foto: palestrante1
+    resumo: ``,
   },
   {
     id: 6,
@@ -178,10 +172,7 @@ export const dia2 = [
     local: 'Anfiteatro Geografia',
     tema: 'Palestra 8',
     palestrante: '',
-    resumo: `
-
-    `,
-    foto: palestrante1
+    resumo: ``,
   },
 ]
 
@@ -191,14 +182,74 @@ export const dia3 = [
     horario: '07:00 às 11:00',
     local: 'Multiplas salas',
     tema: 'Ofincinas e minicursos',
-    palestrante: `
-    Jennifer Caroline de Sousa / Prof. Dr. Hélder Silva e Luna (CPTL/UFMS) / Rodney Murillo Peixoto Couto
-    / Edis Belini Júnior / Rodrigo Satoro Mizobe
-    `,
-    resumo: `
+    palestrante: ``,
+    resumo: ``,
+    miniCursos: [
+      {
+        id: 1,
+        tema: 'Alfabetização científica em espaços formais, não formais e informais da Educação em Ciências',
+        palestrante: 'Jennifer Caroline de Sousa',
+        especializacao: 'Bióloga; Mestra em Fisiologia Geral (IB/USP) e Doutoranda em Educação (USP)',
+        resumo: `O progressivo desenvolvimento científico e tecnológico da sociedade moderna trouxe consigo a necessidade de educar
+        cientificamente a população. Nesse contexto, a alfabetização científica surgiu e se consolidou como uma tarefa dos diferentes
+        espaços educacionais, cuja finalidade é promover a aprendizagem, o reconhecimento e a incorporação da ciência nas práticas culturais
+        e sociais. Em vista disso, propõe-se fomentar o conhecimento e o diálogo sobre a temática, considerando sua relevância para o ensino
+        de Ciências e Biologia na educação formal e para as ações desenvolvidas em espaços educativos não formais e informais ligados à Educação
+        em Ciências.`,
+        foto: jennifer,
+      },
+      {
+        id: 2,
+        tema: 'Identificação e Educação Preventiva dos Principais Animais Peçonhentos',
+        palestrante: 'Prof. Dr. Hélder Silva e Luna (CPTL/UFMS)',
+        especializacao: 'Médico Veterinário e Doutor em Patologia Molecular (UnB)',
+        palestrante2: 'Rodney Murillo Peixoto Couto',
+        especializacao2: 'Biólogo e especialista em Direito Ambiental / Sócio-Proprietário, Diretor Executivo do Biotério Pantanal, Brasil',
 
-    `,
-    foto: palestrante1
+        resumo: `Serão apresentados alguns dos principais animais peçonhentos, incluindo: dados epidemiológicos; importância da sua preservação;
+        identificação dos principais animais peçonhentos de interesse em saúde pública como abelhas, aranhas, escorpiões, serpentes, entre outros;
+        algumas técnicas de manejo, resgate e contenção e conhecimentos sobre a educação preventiva contra estes tipos de acidentes.`,
+        foto: helder,
+        foto2: murilo,
+      },
+      {
+        id: 3,
+        tema: 'Técnicas eletroforéticas e cromatográficas como ferramentas de diagnóstico das hemoglobinopatias',
+        palestrante: 'Edis Belini Júnio',
+        especializacao: 'Biólogo; Doutor em Genética (IBILCE/UNESP)',
+        resumo: `As mutações que afetam a expressão dos genes da hemoglobina (Hb) normal humana levam às hemoglobinopatias hereditárias. Estas representam
+        um grupo de afecção genética mais comumente encontradas nas populações. Atualmente, mais de 1.800 diferentes alelos mutantes, caracterizados em nível
+        molecular, já foram descritos e de forma geral podem originar as Hb variantes, que alteram a estrutura da proteína, ou as talassemias que ocasionam um
+        equilíbrio quantitativo nas cadeias globínicas. O diagnóstico das Hb anormais depende do laboratório que utiliza combinação de ensaios biofísicos,
+        bioquímicos e moleculares para confirmar o diagnóstico laboratorial. O referido minicurso abordará técnicas eletroforéticas e cromatográficas para
+        solução de casos reais e de rotina do Laboratório de Genética e Biologia Molecular da UFMS/CPTL. Dessa forma, os alunos terão vivênca prática/teórica
+        sobre o assunto e permitirá uma aproximação do uso de ferramentas de diagnóstico laboratorial que envolve conhecimentos de bioquímica, biologia
+        molecular e de genética.`,
+        foto: belini,
+      },
+      {
+        id: 4,
+        tema: 'Mapas',
+        palestrante: 'Erivelton',
+        especializacao: '',
+        palestrante2: 'Felipe',
+        resumo: ``,
+      },
+      {
+        id: 5,
+        tema: 'Produção de material didático para aulas',
+        palestrante: 'Rodrigo Satoro Mizobe',
+        especializacao: 'Biólogo; Mestre em Biologia Animal (UFMS)',
+        resumo: ``,
+      },
+      {
+        id: 6,
+        tema: 'Minicurso 6',
+        palestrante: 'Definir palestrante minicurso 6',
+        especializacao: '',
+        resumo: ``,
+      },
+    ]
   },
   {
     id: 2,
@@ -206,9 +257,6 @@ export const dia3 = [
     local: 'ADUFMS',
     tema: 'Almoço - PL confraternização',
     palestrante: '',
-    resumo: `
-
-    `,
-    foto: palestrante1
+    resumo: ``
   },
 ]

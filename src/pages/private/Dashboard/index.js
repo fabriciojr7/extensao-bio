@@ -33,64 +33,72 @@ export default function Dashboard() {
         setIsLoading(true);
         const { data } = await getDados(`presenca/${cpf}`);
 
-        setPessoa({
-          id: data.data[0].id,
-          cpf_pessoa: data.data[0].cpf,
-          nome: data.data[0].nome_completo,
-          email: data.data[0].email,
-          fone: data.data[0].fone,
-          curso: data.data[0].curso,
-          pagamento: data.data[0].pagamento
-        });
+        if (data.data.length > 0) {
+          setPessoa({
+            id: data.data[0].id,
+            cpf_pessoa: data.data[0].cpf,
+            nome: data.data[0].nome_completo,
+            email: data.data[0].email,
+            fone: data.data[0].fone,
+            curso: data.data[0].curso,
+            pagamento: data.data[0].pagamento
+          });
 
-        setMiniCursos([
-          {
-            id: 1,
-            idPresenca: data.data[0].palestras[8].idPresenca,
-            titulo: data.data[0].palestras[8].titulo,
-            presente: data.data[0].palestras[8].presente
-          },
-          {
-            id: 2,
-            idPresenca: data.data[0].palestras[9].idPresenca,
-            titulo: data.data[0].palestras[9].titulo,
-            presente: data.data[0].palestras[9].presente
-          },
-          {
-            id: 3,
-            idPresenca: data.data[0].palestras[10].idPresenca,
-            titulo: data.data[0].palestras[10].titulo,
-            presente: data.data[0].palestras[10].presente
-          },
-          {
-            id: 4,
-            idPresenca: data.data[0].palestras[11].idPresenca,
-            titulo: data.data[0].palestras[11].titulo,
-            presente: data.data[0].palestras[11].presente
-          },
-          {
-            id: 5,
-            idPresenca: data.data[0].palestras[12].idPresenca,
-            titulo: data.data[0].palestras[12].titulo,
-            presente: data.data[0].palestras[12].presente
-          },
-          {
-            id: 6,
-            idPresenca: data.data[0].palestras[13].idPresenca,
-            titulo: data.data[0].palestras[13].titulo,
-            presente: data.data[0].palestras[13].presente
-          }
-        ]);
+          setMiniCursos([
+            {
+              id: 1,
+              idPresenca: data.data[0].palestras[8].idPresenca,
+              titulo: data.data[0].palestras[8].titulo,
+              presente: data.data[0].palestras[8].presente
+            },
+            {
+              id: 2,
+              idPresenca: data.data[0].palestras[9].idPresenca,
+              titulo: data.data[0].palestras[9].titulo,
+              presente: data.data[0].palestras[9].presente
+            },
+            {
+              id: 3,
+              idPresenca: data.data[0].palestras[10].idPresenca,
+              titulo: data.data[0].palestras[10].titulo,
+              presente: data.data[0].palestras[10].presente
+            },
+            {
+              id: 4,
+              idPresenca: data.data[0].palestras[11].idPresenca,
+              titulo: data.data[0].palestras[11].titulo,
+              presente: data.data[0].palestras[11].presente
+            },
+            {
+              id: 5,
+              idPresenca: data.data[0].palestras[12].idPresenca,
+              titulo: data.data[0].palestras[12].titulo,
+              presente: data.data[0].palestras[12].presente
+            },
+            {
+              id: 6,
+              idPresenca: data.data[0].palestras[13].idPresenca,
+              titulo: data.data[0].palestras[13].titulo,
+              presente: data.data[0].palestras[13].presente
+            }
+          ]);
 
-        setEfetivado(data.data[0].pagamento);
-        setPalestras(data.data[0].palestras);
-        setSetvisible(true);
+          setEfetivado(data.data[0].pagamento);
+          setPalestras(data.data[0].palestras);
+          setSetvisible(true);
+        } else {
+          setSetvisible(false);
+          Alert('Atenção', 'Nenhum participante encontrado com esse cpf.', 'info');
+        }
       } else {
+        setSetvisible(false);
         Alert('Atenção', 'O CPF precisa ser informado', 'warning');
+        
       }
     } catch (error) {
       const status = error.response.data
-      if (status.message === 'E_ROW_NOT_FOUND: Row not found') {
+
+      if (status?.message === 'E_ROW_NOT_FOUND: Row not found') {
         Alert('Atenção', 'Nenhum registro encontrado com esse CPF.', 'warning');
       } else {
         Alert('Atenção', 'Erro no servidor: ' + status, 'error');
@@ -206,8 +214,6 @@ export default function Dashboard() {
               se o pagamento foi realizado, e efetive a presença.
             </p>
             <Button
-              // onClick={() => handleEfetivarInscricao()}
-
               onClick={() =>
                 ConfirmeAlert({
                   titlePergunta: `Deseja efetivar a inscrição do participante ${pessoa.nome}`

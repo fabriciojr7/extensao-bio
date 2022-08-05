@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import ModalPalestra from '../../components/ModalPalestra';
+import ModalPalestra from '../../components/ModalPalestra';
 import TitlePage from "../../components/TitlePage";
 import { dia1, dia2, dia3 } from "./dataProgramacao";
 
@@ -10,9 +10,21 @@ import {
 
 export default function Programacao() {
   const [toggle, setToggle] = useState(1);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [palestra, setPalestra] = useState([]);
+
   const toggleTab = (index) => {
     setToggle(index);
   };
+
+  const modalToggle = () => {
+    setModalOpen((prevState) => !prevState)
+  }
+
+  const handleModalOpen = (dia) => {
+    setPalestra(dia);
+    modalToggle();
+  }
 
   return (
     <>
@@ -49,7 +61,7 @@ export default function Programacao() {
           <TabContent className={toggle === 1 ? 'active' : ''}>
             {
               dia1.map(dia => (
-                <Card key={dia.id}>
+                <Card key={dia.id} onClick={() => handleModalOpen(dia)}>
                   <Informacoes>
                     <h4>{dia.horario}</h4>
                     <span>{dia.local}</span>
@@ -65,14 +77,18 @@ export default function Programacao() {
           <TabContent className={toggle === 2 ? 'active' : ''}>
             {
               dia2.map(dia => (
-                <Card key={dia.id}>
+                <Card key={dia.id} onClick={() => handleModalOpen(dia)}>
                   <Informacoes>
                     <h4>{dia.horario}</h4>
                     <span>{dia.local}</span>
                   </Informacoes>
                   <Evento>
                     <h1>{dia.tema}</h1>
-                    <span>{dia.palestrante && `Palestrantes: ${dia.palestrante}`}</span>
+                    <span>
+                      {dia.palestrante && `Palestrantes: ${dia.palestrante}`} {' '}
+                      {dia.palestrante2 && `/ ${dia.palestrante2}`}
+                      {dia.palestrante3 && `/ ${dia.palestrante3}`}
+                    </span>
                   </Evento>
                 </Card>
               ))
@@ -82,14 +98,22 @@ export default function Programacao() {
           <TabContent className={toggle === 3 ? 'active' : ''}>
             {
               dia3.map(dia => (
-                <Card key={dia.id}>
+                <Card key={dia.id} onClick={() => handleModalOpen(dia)}>
                   <Informacoes>
                     <h4>{dia.horario}</h4>
                     <span>{dia.local}</span>
                   </Informacoes>
                   <Evento>
                     <h1>{dia.tema}</h1>
-                    <span>{dia.palestrante && `Palestrantes: ${dia.palestrante}`}</span>
+                    <span>
+                      {dia.palestrante && `Palestrantes: ${dia.palestrante}`}
+                      {dia.miniCursos && `Palestrantes: ${dia.miniCursos[0].palestrante}`}
+                      {dia.miniCursos && ` / ${dia.miniCursos[1].palestrante}`}
+                      {dia.miniCursos && ` / ${dia.miniCursos[2].palestrante}`}
+                      {dia.miniCursos && ` / ${dia.miniCursos[3].palestrante}`}
+                      {dia.miniCursos && ` / ${dia.miniCursos[4].palestrante}`}
+                      {dia.miniCursos && ` / ${dia.miniCursos[5].palestrante}`}
+                    </span>
                   </Evento>
                 </Card>
               ))
@@ -97,7 +121,11 @@ export default function Programacao() {
           </TabContent>
         </TabBody>
       </Container>
-      {/* <ModalPalestra palestra={dia1[10]} /> */}
+
+      {modalOpen &&
+        <ModalPalestra palestra={palestra} toggleModal={modalToggle} />
+      }
+      {/* dia1[10] */}
     </>
   )
 }

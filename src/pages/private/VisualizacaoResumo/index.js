@@ -11,7 +11,7 @@ import { Container, AreaVoltar } from "./styles";
 
 export default function VisualizacaoResumo() {
     const [resumo, setResumo] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
     const { id } = useParams();
@@ -46,8 +46,8 @@ export default function VisualizacaoResumo() {
             <Container>
                 <h1><span>Título:</span> {resumo.titulo}</h1>
                 <h2><span>Autores:</span> {resumo.autores}</h2>
-                <h2><span>Autores:</span> {resumo.filiacao}</h2>
-                {resumo.apoio && <h2><span>Autores:</span> {resumo.apoio}</h2>}
+                <h2><span>Filiação:</span> {resumo.filiacao}</h2>
+                {resumo.apoio && <h2><span>Apoio:</span> {resumo.apoio}</h2>}
                 <h2><span>Palavras-chave:</span> {resumo.palavras_chave}</h2>
 
                 <p>
