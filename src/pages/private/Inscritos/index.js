@@ -5,6 +5,7 @@ import InputSearch from "../components/InputSearch";
 import { listagem } from "../../../services/api";
 import Loader from "../../../components/Loader";
 import { Alert } from "../../../utils/Alert";
+import Pagination from "../components/Pagination";
 
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
@@ -14,6 +15,10 @@ export default function Inscritos() {
   const [inscritos, setInscritos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(0);
+
+
 
   const getInscritos = async () => {
     try {
@@ -27,9 +32,21 @@ export default function Inscritos() {
     }
   }
 
+  const filteredInscritos = useMemo(() => inscritos.filter((inscrito) => (
+    inscrito.nome_completo.toLowerCase().includes(searchTerm.toLowerCase())
+    || inscrito.cpf.includes(searchTerm)
+  )), [inscritos, searchTerm]);
+
+  const itensPerPage = 15;
+  const pages = Math.ceil(filteredInscritos.length / itensPerPage);
+  const startItens = currentPage * itensPerPage;
+  const endIndex = startItens + itensPerPage;
+  const currentInscritos = filteredInscritos.slice(startItens, endIndex);
+
   useEffect(() => {
     getInscritos();
   }, []);
+
 
   const miniCursoTable = (inscrito) => {
     if (inscrito?.palestras[8]?.presente) {
@@ -48,11 +65,6 @@ export default function Inscritos() {
       return { id: 7, titulo: 'MiniCurso', presente: false };
     }
   }
-
-  const filteredInscritos = useMemo(() => inscritos.filter((inscrito) => (
-    inscrito.nome_completo.toLowerCase().includes(searchTerm.toLowerCase())
-    || inscrito.cpf.includes(searchTerm)
-  )), [inscritos, searchTerm]);
 
   return (
     <Container>
@@ -73,6 +85,12 @@ export default function Inscritos() {
           </h3>
         </Count>
       </SubHeader>
+
+      <Pagination
+        pages={pages}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
 
       <Table>
         <thead>
@@ -95,7 +113,7 @@ export default function Inscritos() {
         </thead>
         <tbody>
           {
-            filteredInscritos.map((inscrito) => (
+            currentInscritos.map((inscrito) => (
               <tr key={inscrito.id}>
                 <td className="text" data-title="Nome">{inscrito.nome_completo}</td>
                 <td data-title="CPF">{inscrito.cpf}</td>
@@ -117,8 +135,8 @@ export default function Inscritos() {
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
                 <td data-title="P-5">{inscrito.palestras[8].presente ?
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
-                <td data-title="P-6">{miniCursoTable(inscrito)?.presente ?                   
-                    <p>{miniCursoTable(inscrito)?.titulo}</p>               
+                <td data-title="P-6">{miniCursoTable(inscrito)?.presente ?
+                  <p>{miniCursoTable(inscrito)?.titulo}</p>
                   : <FaTimesCircle className="falta" />
                 }</td>
               </tr>

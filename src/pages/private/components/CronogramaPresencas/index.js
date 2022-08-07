@@ -63,7 +63,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
 
             <td rowSpan={5} className="local"><p>Multiplas salas</p></td>
 
-            <td rowSpan={5} className={presente && "confirmada"}>
+            <td rowSpan={5} className={presente ? "confirmada" : ""}>
               <p>Oficinas/Minicursos</p>
               <Select
                 value={curso}
@@ -103,7 +103,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
           <tr>
             <th>08:00</th>
 
-            <td className={palestras[0]?.presente && "confirmada"}>
+            <td className={palestras[0]?.presente ? "confirmada" : ""}>
               <p>Palestra 1 - Magna - Divulgação da Ciência*</p>
               <button
                 onClick={() =>
@@ -129,7 +129,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
 
           <tr>
             <th>10:00</th>
-            <td className={palestras[1]?.presente && "confirmada"}>
+            <td className={palestras[1]?.presente ? "confirmada" : ""}>
               <p>Palestra 2 - SENAI Biomassa?</p>
               <button
                 onClick={() =>
@@ -158,7 +158,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
             <th>13:00</th>
             <td rowSpan={6} className="local"><p>Anfiteatro Geografia</p></td>
 
-            <td className={palestras[2]?.presente && "confirmada"}>
+            <td className={palestras[2]?.presente ? "confirmada" : ""}>
               <p>Palestra 3 -Fenando (Peixes)</p>
               <button
                 onClick={() =>
@@ -173,7 +173,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
 
             <td rowSpan={6} className="local"><p>Anfiteatro Geografia</p></td>
 
-            <td rowSpan={2} className={palestras[8]?.presente && "confirmada"}>
+            <td rowSpan={2} className={palestras[8]?.presente ? "confirmada" : ""}>
               <p>Roda de tero e Empreendedorismo: Impacto ambiental (Renato Gaiga)/Educação (Renan Garcia)/Startup com fomento (Caio de Oliveira)</p>
               <button
                 onClick={() =>
@@ -191,7 +191,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
 
           <tr>
             <th>14:00</th>
-            <td className={palestras[3]?.presente && "confirmada"}>
+            <td className={palestras[3]?.presente ? "confirmada" : ""}>
               <p>Palestra 4 -Zoo Ilha</p>
               <button
                 onClick={() =>
@@ -224,7 +224,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
 
           <tr>
             <th>15:15</th>
-            <td className={palestras[4]?.presente && "confirmada"}>
+            <td className={palestras[4]?.presente ? "confirmada" : ""}>
               <p>Palestra 5 - Eder IBAMA</p>
               <button
                 onClick={() =>
@@ -237,7 +237,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
               </button>
             </td>
 
-            <td className={palestras[6]?.presente && "confirmada"}>
+            <td className={palestras[6]?.presente ? "confirmada" : ""}>
               <p>Palestra 7 - Saúde?</p>
               <button
                 onClick={() =>
@@ -253,7 +253,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
 
           <tr>
             <th>16:15</th>
-            <td className={palestras[5]?.presente && "confirmada"}>
+            <td className={palestras[5]?.presente ? "confirmada" : ""}>
               <p>Palestra 6 - Botânica</p>
               <button
                 onClick={() =>
@@ -266,7 +266,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
               </button>
             </td>
 
-            <td className={palestras[7]?.presente && "confirmada"}>
+            <td className={palestras[7]?.presente ? "confirmada" : ""}>
               <p>Palestra 8</p>
               <button
                 onClick={() =>
@@ -279,18 +279,6 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
               </button>
             </td>
           </tr>
-
-          {/* <tr>
-            <th>17:15</th>
-            <td className={palestras[6]?.presente && "confirmada"}>
-              <p>Palestra 7 - Saúde?</p>
-
-            </td>
-
-            <td>
-              <p>Palestra 10</p>
-            </td>
-          </tr> */}
         </thead>
       </Table>
     </Container>

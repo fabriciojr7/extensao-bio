@@ -9,15 +9,17 @@ import Loader from "../../../components/Loader";
 import { Alert } from "../../../utils/Alert";
 
 import { Container, SubHeader, Count } from "./styles.js";
+import Pagination from "../components/Pagination";
 
 export default function Resumos() {
   const [resumos, setResumos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const navigate = useNavigate();
 
-  const getInscritos = async () => {
+  const getResumos = async () => {
     try {
       setIsLoading(true);
       const { data } = await listagem('resumo');
@@ -29,15 +31,23 @@ export default function Resumos() {
     }
   }
 
-  useEffect(() => {
-    getInscritos();
-  }, []);
-
   const filteredResumos = useMemo(() => resumos.filter((resumo) => (
     resumo.autores.toLowerCase().includes(searchTerm.toLowerCase())
     || resumo.titulo.toLowerCase().includes(searchTerm.toLowerCase())
-    || resumo.pessoa_cpf.includes(searchTerm)
+    || resumo.aluno_cpf.includes(searchTerm)
   )), [resumos, searchTerm]);
+
+  const itensPerPage = 15;
+  const pages = Math.ceil(filteredResumos.length / itensPerPage);
+  const startItens = currentPage * itensPerPage;
+  const endIndex = startItens + itensPerPage;
+  const currentResumos = filteredResumos.slice(startItens, endIndex);
+
+  useEffect(() => {
+    getResumos();
+  }, []);
+
+
 
   const visualizarResumo = (cpf) => {
     navigate(`/adm/visualizacaoResumo/${cpf}`);
@@ -63,6 +73,12 @@ export default function Resumos() {
         </Count>
       </SubHeader>
 
+      <Pagination
+        pages={pages}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
+
       <Table>
         <thead>
           <tr>
@@ -73,7 +89,7 @@ export default function Resumos() {
         </thead>
         <tbody>
           {
-            filteredResumos.map((resumo) => (
+            currentResumos.map((resumo) => (
               <tr
                 key={resumo.id}
                 onClick={() => visualizarResumo(resumo.id)}

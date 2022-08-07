@@ -22,14 +22,18 @@ import VisualizacaoResumo from './pages/private/VisualizacaoResumo';
 import { AuthProvider, AuthContext } from './context/auth';
 
 function PrivateRoute({ children }) {
-  const { authenticated, loading } = useContext(AuthContext);
-
-  if (loading) {
-    return <div>Carregando...</div>;
-  }
+  const { authenticated } = useContext(AuthContext);
 
   if (!authenticated) {
     return <Navigate to="/login" />;
+  }
+  return children;
+}
+
+const Redirect = ({ children }) => {
+  const { authenticated } = useContext(AuthContext);
+  if (authenticated) {
+    return <Navigate to='/adm' />
   }
   return children;
 }
@@ -49,7 +53,13 @@ export default function MainRoutes() {
             <Route path='/inscricao' element={<Inscricao />} />
           </Route>
 
-          <Route path='/login' element={<Login />} />
+
+          <Route path='/login' element={
+            <Redirect>
+              <Login />
+            </Redirect>
+
+          } />
 
           <Route path="/adm" element={<PrivateRoute><LayoutAdm /></PrivateRoute>}>
             <Route index element={<Dashboard />} />
