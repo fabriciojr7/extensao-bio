@@ -37,6 +37,7 @@ export default function ModalPalestra({ toggleModal, palestra }) {
         <Palestrante>
           {palestra.foto && <img src={palestra.foto} alt="" />}
           {palestra.palestrante && <p><span>Palestrante:</span> {palestra.palestrante}</p>}
+          {palestra.especializacao && <p><span>Especialização:</span> {palestra.especializacao}</p>}
         </Palestrante>
         {palestra.titulo && <p className="titulo"><span>Título:</span> {palestra.titulo}</p>}
         <Resumo>
@@ -46,6 +47,7 @@ export default function ModalPalestra({ toggleModal, palestra }) {
         <Palestrante>
           {palestra.foto2 && <img src={palestra.foto2} alt="" />}
           {palestra.palestrante2 && <p><span>Palestrante:</span> {palestra.palestrante2}</p>}
+          {palestra.especializacao2 && <p><span>Especialização:</span> {palestra.especializacao2}</p>}
         </Palestrante>
         <Resumo>
           <p>{palestra.resumo2 && `${palestra.resumo2}`}</p>
@@ -54,6 +56,7 @@ export default function ModalPalestra({ toggleModal, palestra }) {
         <Palestrante>
           {palestra.foto3 && <img src={palestra.foto3} alt="" />}
           {palestra.palestrante3 && <p><span>Palestrante:</span> {palestra.palestrante3}</p>}
+          {palestra.especializacao3 && <p><span>Especialização:</span> {palestra.especializacao3}</p>}
         </Palestrante>
         <Resumo>
           <p>{palestra.resumo3 && `${palestra.resumo3}`}</p>

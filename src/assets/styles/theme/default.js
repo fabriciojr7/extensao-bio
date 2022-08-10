@@ -32,6 +32,7 @@ const defaultTheme = {
       100: '#e5e5e5',
     },
     danger: {
+      lighter: '#fdb7bd',
       light: '#f15b67',
       main: '#eb2d3b',
       dark: '#d21421',

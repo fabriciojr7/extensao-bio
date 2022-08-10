@@ -47,39 +47,39 @@ export default function Dashboard() {
           setMiniCursos([
             {
               id: 1,
-              idPresenca: data.data[0].palestras[8].idPresenca,
-              titulo: data.data[0].palestras[8].titulo,
-              presente: data.data[0].palestras[8].presente
-            },
-            {
-              id: 2,
               idPresenca: data.data[0].palestras[9].idPresenca,
               titulo: data.data[0].palestras[9].titulo,
               presente: data.data[0].palestras[9].presente
             },
             {
-              id: 3,
+              id: 2,
               idPresenca: data.data[0].palestras[10].idPresenca,
               titulo: data.data[0].palestras[10].titulo,
               presente: data.data[0].palestras[10].presente
             },
             {
-              id: 4,
+              id: 3,
               idPresenca: data.data[0].palestras[11].idPresenca,
               titulo: data.data[0].palestras[11].titulo,
               presente: data.data[0].palestras[11].presente
             },
             {
-              id: 5,
+              id: 4,
               idPresenca: data.data[0].palestras[12].idPresenca,
               titulo: data.data[0].palestras[12].titulo,
               presente: data.data[0].palestras[12].presente
             },
             {
-              id: 6,
+              id: 5,
               idPresenca: data.data[0].palestras[13].idPresenca,
               titulo: data.data[0].palestras[13].titulo,
               presente: data.data[0].palestras[13].presente
+            },
+            {
+              id: 6,
+              idPresenca: data.data[0].palestras[14].idPresenca,
+              titulo: data.data[0].palestras[14].titulo,
+              presente: data.data[0].palestras[14].presente
             }
           ]);
 
@@ -93,7 +93,7 @@ export default function Dashboard() {
       } else {
         setSetvisible(false);
         Alert('Atenção', 'O CPF precisa ser informado', 'warning');
-        
+
       }
     } catch (error) {
       const status = error.response.data

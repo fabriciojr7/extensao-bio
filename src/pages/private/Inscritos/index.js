@@ -7,18 +7,21 @@ import Loader from "../../../components/Loader";
 import { Alert } from "../../../utils/Alert";
 import Pagination from "../components/Pagination";
 
+
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
-import { Container, SubHeader, Count } from "./styles.js";
+import {
+  Container, SubHeader, Count,
+  Legenda, Caixa, Filter
+} from "./styles.js";
 
 export default function Inscritos() {
   const [inscritos, setInscritos] = useState([]);
+  const [inscritosEfetuados, setInscritosEfetuados] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-
   const [currentPage, setCurrentPage] = useState(0);
-
-
+  const [selectedRadioBtn, setSelectedRadioBtn] = useState('todas')
 
   const getInscritos = async () => {
     try {
@@ -32,10 +35,26 @@ export default function Inscritos() {
     }
   }
 
-  const filteredInscritos = useMemo(() => inscritos.filter((inscrito) => (
+  useEffect(() => {
+    getInscritos();
+  }, []);
+
+  useEffect(() => {
+    if (selectedRadioBtn === 'todas') {
+      setInscritosEfetuados(inscritos);
+    } else if (selectedRadioBtn === 'sim') {
+      const newInscritos = inscritos.filter(inscrito => inscrito.pagamento);
+      setInscritosEfetuados(newInscritos);
+    } else {
+      const newInscritos = inscritos.filter(inscrito => !inscrito.pagamento);
+      setInscritosEfetuados(newInscritos);
+    }
+  }, [selectedRadioBtn, inscritos]);
+
+  const filteredInscritos = useMemo(() => inscritosEfetuados.filter((inscrito) => (
     inscrito.nome_completo.toLowerCase().includes(searchTerm.toLowerCase())
     || inscrito.cpf.includes(searchTerm)
-  )), [inscritos, searchTerm]);
+  )), [inscritosEfetuados, searchTerm]);
 
   const itensPerPage = 15;
   const pages = Math.ceil(filteredInscritos.length / itensPerPage);
@@ -43,15 +62,16 @@ export default function Inscritos() {
   const endIndex = startItens + itensPerPage;
   const currentInscritos = filteredInscritos.slice(startItens, endIndex);
 
-  useEffect(() => {
-    getInscritos();
-  }, []);
+  const isRadioSelected = (radio) => {
+    return selectedRadioBtn === radio;
+  }
 
+  const handleRadioClick = (e) => {
+    setSelectedRadioBtn(e.target.value);
+  }
 
   const miniCursoTable = (inscrito) => {
-    if (inscrito?.palestras[8]?.presente) {
-      return inscrito?.palestras[8];
-    } else if (inscrito?.palestras[9]?.presente) {
+    if (inscrito?.palestras[9]?.presente) {
       return inscrito?.palestras[9];
     } else if (inscrito?.palestras[10]?.presente) {
       return inscrito?.palestras[10];
@@ -61,6 +81,8 @@ export default function Inscritos() {
       return inscrito?.palestras[12];
     } else if (inscrito?.palestras[13]?.presente) {
       return inscrito?.palestras[13];
+    } else if (inscrito?.palestras[14]?.presente) {
+      return inscrito?.palestras[14];
     } else {
       return { id: 7, titulo: 'MiniCurso', presente: false };
     }
@@ -86,11 +108,38 @@ export default function Inscritos() {
         </Count>
       </SubHeader>
 
-      <Pagination
-        pages={pages}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
+      <div className="headerTable">
+        <Filter>
+          <p>Inscrições efetuadas: </p>
+          <input
+            type="radio"
+            value="todas"
+            name="inscricoes-efetuadas"
+            checked={isRadioSelected('todas')}
+            onChange={handleRadioClick}
+          /> Todas
+          <input
+            type="radio"
+            value="sim"
+            name="inscricoes-efetuadas"
+            checked={isRadioSelected('sim')}
+            onChange={handleRadioClick}
+          /> Sim
+          <input
+            type="radio"
+            value="nao"
+            name="inscricoes-efetuadas"
+            checked={isRadioSelected('nao')}
+            onChange={handleRadioClick}
+          /> Não
+        </Filter>
+
+        <Pagination
+          pages={pages}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
+      </div>
 
       <Table>
         <thead>
@@ -114,28 +163,28 @@ export default function Inscritos() {
         <tbody>
           {
             currentInscritos.map((inscrito) => (
-              <tr key={inscrito.id}>
+              <tr key={inscrito.id} className={!inscrito.pagamento ? "pendente" : ""}>
                 <td className="text" data-title="Nome">{inscrito.nome_completo}</td>
-                <td data-title="CPF">{inscrito.cpf}</td>
-                <td data-title="P-1">{inscrito.palestras[0].presente ?
+                <td className="cpf" data-title="CPF">{inscrito.cpf}</td>
+                <td className="palestra" data-title="P-1">{inscrito.palestras[0].presente ?
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
-                <td data-title="P-2">{inscrito.palestras[1].presente ?
+                <td className="palestra" data-title="P-2">{inscrito.palestras[1].presente ?
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
-                <td data-title="P-3">{inscrito.palestras[2].presente ?
+                <td className="palestra" data-title="P-3">{inscrito.palestras[2].presente ?
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
-                <td data-title="P-4">{inscrito.palestras[3].presente ?
+                <td className="palestra" data-title="P-4">{inscrito.palestras[3].presente ?
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
-                <td data-title="P-5">{inscrito.palestras[4].presente ?
+                <td className="palestra" data-title="P-5">{inscrito.palestras[4].presente ?
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
-                <td data-title="P-6">{inscrito.palestras[5].presente ?
+                <td className="palestra" data-title="P-6">{inscrito.palestras[5].presente ?
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
-                <td data-title="P-3">{inscrito.palestras[6].presente ?
+                <td className="palestra" data-title="P-7">{inscrito.palestras[6].presente ?
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
-                <td data-title="P-4">{inscrito.palestras[7].presente ?
+                <td className="palestra" data-title="P-8">{inscrito.palestras[7].presente ?
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
-                <td data-title="P-5">{inscrito.palestras[8].presente ?
+                <td className="roda" data-title="Roda">{inscrito.palestras[8].presente ?
                   <FaCheckCircle className="presenca" /> : <FaTimesCircle className="falta" />}</td>
-                <td data-title="P-6">{miniCursoTable(inscrito)?.presente ?
+                <td className="mini" data-title="MiniCurso">{miniCursoTable(inscrito)?.presente ?
                   <p>{miniCursoTable(inscrito)?.titulo}</p>
                   : <FaTimesCircle className="falta" />
                 }</td>
@@ -144,6 +193,11 @@ export default function Inscritos() {
           }
         </tbody>
       </Table>
+
+      <Legenda>
+        Inscrição não efetivada
+        <Caixa />
+      </Legenda>
     </Container>
   )
 }

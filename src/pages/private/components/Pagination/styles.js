@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 16px 0;
+  justify-content: flex-end;
+  margin-bottom: 16px;
   color: ${({ theme }) => theme.colors.gray[600]};
 
   svg{
