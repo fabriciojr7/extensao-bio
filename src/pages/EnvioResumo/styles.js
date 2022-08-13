@@ -12,7 +12,7 @@ export const Content = styled.div`
     width: 100%;
     max-width: 800px;
 
-    textarea{
+    textarea.texto{
       height: 400px;
     }
     p{

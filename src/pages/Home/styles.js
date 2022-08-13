@@ -144,7 +144,7 @@ export const Content = styled.div`
   align-items: center;
   justify-content: center;
 
-
+  padding: 0 8px;
   h3{
     font-size: 24px;
     font-weight: 300;

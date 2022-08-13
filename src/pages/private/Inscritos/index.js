@@ -49,6 +49,7 @@ export default function Inscritos() {
       const newInscritos = inscritos.filter(inscrito => !inscrito.pagamento);
       setInscritosEfetuados(newInscritos);
     }
+    setCurrentPage(0);
   }, [selectedRadioBtn, inscritos]);
 
   const filteredInscritos = useMemo(() => inscritosEfetuados.filter((inscrito) => (

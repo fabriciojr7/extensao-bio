@@ -1,18 +1,16 @@
 import { useState } from "react";
-import HeaderPage from "../components/HeaderPage"
-import Input from "../../../components/Input";
-import FormGrouping from "../../../components/FormGrouping";
 import Button from "../../../components/Button";
-import formatCpf from "../../../utils/formatCpf";
-import { getDados, updateCampo } from "../../../services/api";
+import FormGrouping from "../../../components/FormGrouping";
+import Input from "../../../components/Input";
 import Loader from "../../../components/Loader";
+import { getDados, updateCampo } from "../../../services/api";
 import { Alert, ConfirmeAlert } from "../../../utils/Alert";
+import formatCpf from "../../../utils/formatCpf";
 import CronogramaPresencas from "../components/CronogramaPresencas";
+import HeaderPage from "../components/HeaderPage";
 
-import {
-  Form, Line, ContentForm, ContentDados,
-  ContentPresenca, LineContent, ContentEfetivacao
-} from "./styles";
+// import { FaRegEdit } from "react-icons/fa";
+import { ContentDados, ContentEfetivacao, ContentForm, ContentPresenca, Form, Line, LineContent } from "./styles";
 
 export default function Dashboard() {
   const [cpf, setCpf] = useState('');
@@ -163,6 +161,7 @@ export default function Dashboard() {
 
       <ContentPresenca isVisible={visible}>
         <ContentDados>
+          {/* <FaRegEdit className="edit"/> */}
           <h1>Dados do participante</h1>
           <LineContent>
             <span>CPF:</span>
@@ -198,7 +197,6 @@ export default function Dashboard() {
               {pessoa.fone}
             </h2>
           </LineContent>
-
         </ContentDados>
 
         {efetivado ? (

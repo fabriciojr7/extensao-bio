@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import TitlePage from "../../components/TitlePage";
+import Button from "../../components/Button";
 import FormGrouping from "../../components/FormGrouping";
 import Input from "../../components/Input";
-import formatCpf from "../../utils/formatCpf";
-import Button from "../../components/Button";
-import useErrors from "../../hooks/useErrors";
 import Loader from "../../components/Loader";
+import TitlePage from "../../components/TitlePage";
+import useErrors from "../../hooks/useErrors";
 import { create } from "../../services/api";
 import { Alert } from "../../utils/Alert";
-import isEmailValid from "../../utils/isEmailValid";
+import formatCpf from "../../utils/formatCpf";
 import formatPhone from "../../utils/formatPhone";
+import isEmailValid from "../../utils/isEmailValid";
 
-import { Content, Text } from './styles'
+import { Content, Text } from './styles';
 
 export default function Inscricao() {
   const [cpf, setCpf] = useState('');
@@ -25,6 +25,7 @@ export default function Inscricao() {
   const [periodo, setPeriodo] = useState('');
   const [escolaridade, setEscolaridade] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [enviou, setEnviou] = useState(false);
 
   const { setError, removeError, getErrorsMEssageByFieldName } = useErrors();
   const navigate = useNavigate();
@@ -193,6 +194,7 @@ export default function Inscricao() {
   const handleSubmit = async () => {
     if (checkFormValid()) {
       try {
+        setEnviou(true);
         setIsLoading(true);
         const dados = {
           cpf,
@@ -331,6 +333,7 @@ export default function Inscricao() {
             <Button
               type="button"
               onClick={handleSubmit}
+              disabled={enviou}
             >Confirmar inscrição</Button>
           </FormGrouping>
         </form>

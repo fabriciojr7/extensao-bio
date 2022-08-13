@@ -2,12 +2,11 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/Button";
 import {
-  Container, Faixa, LogoEvento,
-  ContainerFaixa, Text, Content, 
-  Teste
-} from "./styles"
+  Container, ContainerFaixa, Content, Faixa, LogoEvento, Teste, Text
+} from "./styles";
 
-import semaBio from '../../assets/images/logo-bio.png'
+import semaBio from '../../assets/images/logo-bio.png';
+import { Patrocinios } from "../../components/Patrocinios";
 export default function Home() {
   const navigate = useNavigate();
 
@@ -42,6 +41,7 @@ export default function Home() {
         >
           Inscreva-se no evento
         </Button>
+        <Patrocinios />
       </Content>
 
 

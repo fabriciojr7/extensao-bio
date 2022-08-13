@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import TitlePage from "../../components/TitlePage";
-import Input from "../../components/Input";
-import TextArea from "../../components/TextArea";
-import FormGrouping from "../../components/FormGrouping";
 import Button from "../../components/Button";
-import formatCpf from "../../utils/formatCpf";
-import useErrors from "../../hooks/useErrors";
+import FormGrouping from "../../components/FormGrouping";
+import Input from "../../components/Input";
 import Loader from "../../components/Loader";
+import TextArea from "../../components/TextArea";
+import TitlePage from "../../components/TitlePage";
+import useErrors from "../../hooks/useErrors";
 import { create } from "../../services/api";
 import { Alert } from "../../utils/Alert";
+import formatCpf from "../../utils/formatCpf";
 
-import { Content, ContainerForm } from './styles'
+import { ContainerForm, Content } from './styles';
 
 export default function EnvioResumo() {
   const [cpf, setCpf] = useState('');
@@ -23,6 +23,7 @@ export default function EnvioResumo() {
   const [palavrasChave, setPalavrasChave] = useState('');
   const [resumo, setResumo] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [enviou, setEnviou] = useState(false);
 
   const { setError, removeError, getErrorsMEssageByFieldName } = useErrors();
   const navigate = useNavigate();
@@ -166,6 +167,7 @@ export default function EnvioResumo() {
 
     if (checkFormValid()) {
       try {
+        setEnviou(true);
         setIsLoading(true);
         const dados = {
           alunoCpf: cpf,
@@ -239,22 +241,22 @@ export default function EnvioResumo() {
             </FormGrouping>
 
             <FormGrouping error={getErrorsMEssageByFieldName('autores')}>
-              <Input
+              <TextArea
                 error={getErrorsMEssageByFieldName('autores')}
                 placeholder="Autores"
                 value={autores}
                 onChange={handleAutoresChange}
-                maxLength={128}
+                maxLength={512}
               />
             </FormGrouping>
 
             <FormGrouping error={getErrorsMEssageByFieldName('filiacao')}>
-              <Input
+              <TextArea
                 error={getErrorsMEssageByFieldName('filiacao')}
                 placeholder="Filiação"
                 value={filiacao}
                 onChange={handleFiliacaoChange}
-                maxLength={128}
+                maxLength={512}
               />
             </FormGrouping>
 
@@ -284,6 +286,7 @@ export default function EnvioResumo() {
           >
             <p>{resumo.length} / 1800</p>
             <TextArea
+              className="texto"
               error={getErrorsMEssageByFieldName('resumo')}
               placeholder="Coloque seu resumo aqui"
               value={resumo}
@@ -297,6 +300,7 @@ export default function EnvioResumo() {
               <Button
                 type="button"
                 onClick={() => handleSubmit()}
+                disabled={enviou}
               >Enviar resumo</Button>
             </FormGrouping>
           </ContainerForm>

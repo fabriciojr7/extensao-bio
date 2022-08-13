@@ -5,7 +5,6 @@ export default styled.button`
     height: 52px;
     border: none;
     padding: 0 16px;
-    /* background: ${({ theme }) => theme.colors.primary.main}; */
     font-size: 18px;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.04);
     font-weight: bold;
@@ -18,6 +17,11 @@ export default styled.button`
       background: linear-gradient(135deg, ${theme.colors.primary.dark}, ${theme.colors.brown.lighter});
       &:hover{
         background: linear-gradient(-135deg, ${theme.colors.primary.dark}, ${theme.colors.brown.lighter});
+      }
+
+      &:disabled{
+        cursor: default;
+        background: linear-gradient(-135deg, ${theme.colors.gray[500]}, ${theme.colors.gray[100]});
       }
     `}
 

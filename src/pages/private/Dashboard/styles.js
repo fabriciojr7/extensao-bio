@@ -42,6 +42,18 @@ export const ContentDados = styled.div`
   box-shadow: 0px 4px 10px rgba(0,0,0,0.09);
 
   border-radius: 8px;
+  position: relative;
+
+  .edit{
+    position: absolute;
+    color: ${({ theme }) => theme.colors.primary.dark};
+    font-size: 24px;
+    cursor: pointer;
+    transition: color .2s ease-in-out;
+    &:hover{
+      color: ${({ theme }) => theme.colors.primary.light};
+    }
+  }
 `
 
 export const LineContent = styled.div`

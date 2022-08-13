@@ -1,4 +1,4 @@
-import { Container, Content, AreaImg, Text } from './styles'
+import { AreaImg, Container, Content, Text } from './styles';
 
 import logo from '../../assets/images/logo-ufms.png';
 import sema from '../../assets/images/semana-bio.png';
