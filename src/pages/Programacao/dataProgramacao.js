@@ -3,9 +3,11 @@ import eldisbelini from '../../assets/images/palestrantes/Edis Belini.jpeg';
 import erivelton from '../../assets/images/palestrantes/Erivelton.jpeg';
 import felipe from '../../assets/images/palestrantes/Felipe Martins.jpeg';
 import fernando from '../../assets/images/palestrantes/fernando.png';
+import fernandoFerreira from '../../assets/images/palestrantes/Fernando Ferreira.jpeg';
 import flavio from '../../assets/images/palestrantes/Flavio Fardin.png';
 import gabriel from '../../assets/images/palestrantes/Gabriel Massocato.jpg';
 import helder from '../../assets/images/palestrantes/Helder.JPG';
+import jailson from '../../assets/images/palestrantes/Jailson Aguilar.jpeg';
 import jennifer from '../../assets/images/palestrantes/jennifer.jpg';
 import jose from '../../assets/images/palestrantes/Jose Eduardo.jpg';
 import lucas from '../../assets/images/palestrantes/Lucas Gazarini.jpeg';
@@ -60,10 +62,17 @@ export const dia1 = [
     id: 5,
     horario: '10:00 às 11:00',
     local: 'Anfiteatro Dercir',
-    tema: 'Palestra 2',
-    palestrante: 'Jailson',
+    tema: 'Palestra 2:  Elementos Potencialmente Tóxicos no Solo: Tolerância de Plantas, Fitogerenciamento e Fitorremediação.',
+    palestrante: 'Jailson Vieira Aguilar',
     especializacao: '',
-    resumo: ``,
+    resumo: `A interação dos metais pesados com as plantas representa seu elo de entrada para toda cadeia
+     alimentar, o que gera preocupações envolvendo a contaminação de solos e por consequência a
+     contaminações dos membros de níveis tróficos superiores. O fitogerenciamento e a fitorremediação
+     são técnicas sustentáveis para retirar ou manejar concentrações excessivas de elementos tóxicos
+     nos ecossistemas em diversos compartimentos ambientais cultivando plantas tolerantes e minerando o
+     excesso de metal que possa estar pressionando os indivíduos do ecossistema.  Dessa forma, visamos
+     oferecer arcabouço teórico/prático para a viabilização destas técnicas no Brasil e no mundo.`,
+    foto: jailson
   },
   {
     id: 6,
@@ -143,8 +152,8 @@ export const dia2 = [
     horario: '07:00 às 11:00',
     local: 'Bloco 6 - Área aberta',
     tema: 'Apresentação de trabalhos e visita guiada de alunos do ensino médio',
-    palestrante: '',
-    resumo: ``
+    infos: 'Coffe break das 9h - 9h15',
+    resumo: `Coffe break das 9h - 9h15`
   },
   {
     id: 2,
@@ -158,7 +167,7 @@ export const dia2 = [
     id: 3,
     horario: '13:00 às 15:00',
     local: 'Anfiteatro Geografia',
-    tema: 'Roda de tereré e Empreendedorismo:',
+    tema: 'Roda de tereré e Empreendedorismo',
 
     titulo: 'Carreira: uma espécie em extinção',
     palestrante: 'Renan Garcia de Oliveira',
@@ -200,16 +209,22 @@ export const dia2 = [
     id: 5,
     horario: '15:15 às 16:15',
     local: 'Anfiteatro Geografia',
-    tema: 'Palestra 7',
-    palestrante: '',
-    resumo: ``,
+    tema: `Palestra 7: Fronteiras Tecnológicas para o aproveitamento da biomassa de macrófitas aquáticas,
+    estudo de caso, Complexo Urubupungá`,
+    palestrante: 'Fernando Alves Ferreira',
+    especializacao: 'Biólogo, doutor em Ecologia (UEM) e Pesquisador Especialista Visitante vinculado ao Instituto Senai de Inovação Biomassa',
+    resumo: `Abordagens tecnológicas Inovadoras sobre o aproveitamento da biomassa de macrófitas
+    aquáticas invasoras na região dos reservatórios UHE Jupiá e Ilha Solteira`,
+    foto: fernandoFerreira
   },
   {
     id: 6,
     horario: '16:15',
     local: 'Anfiteatro Geografia',
-    tema: 'Palestra 8',
-    palestrante: '',
+    tema: 'Palestra 8: Conservação ex situ da fauna Silvestre em Zoológicos',
+    palestrante: 'Lucio de oliveira e Souza (Médico Veterinário do CCFS de Ilha Solteira)',
+    palestrante2: 'Murilo de Souza Queiroz (Biólogo do CCFS de Ilha Solteira)',
+    palestrante3: 'Gaby Soares de Freitas (Zootecnista do CCFS de Ilha Solteira)',
     resumo: ``,
   },
 ]
@@ -289,14 +304,7 @@ export const dia3 = [
         Metodologias ativas aplicadas no Ensino de Ciências e Biologia. Neste cenário, serão desenvolvidas duas oficinas de confecção de moldes em silicone para a
         replicação de modelos tridimensionais e fósseis e de réplicas fósseis (em gesso).`,
         foto: rodrigo
-      },
-      {
-        id: 6,
-        tema: 'Minicurso 6',
-        palestrante: 'Definir palestrante minicurso 6',
-        especializacao: '',
-        resumo: ``,
-      },
+      }
     ]
   },
   {

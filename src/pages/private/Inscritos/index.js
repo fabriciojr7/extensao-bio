@@ -111,7 +111,7 @@ export default function Inscritos() {
 
       <div className="headerTable">
         <Filter>
-          <p>Inscrições efetuadas: </p>
+          <p>Inscrições efetivadas: </p>
           <input
             type="radio"
             value="todas"

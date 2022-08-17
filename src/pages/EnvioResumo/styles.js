@@ -19,6 +19,10 @@ export const Content = styled.div`
       text-align: end;
       padding-bottom: 8px;
       color: ${({theme}) => theme.colors.gray[500]};
+
+      &.obs{
+        text-align: left;
+      }
     }
   }
 

@@ -14,17 +14,14 @@ export const Container = styled.div`
   box-shadow: 0px 4px 10px rgba(0,0,0,0.09);
   border-radius: 8px;
 
-  @media screen and (max-width: 800px){
+  @media screen and (max-width: 1100px){
     flex-direction: column;
+    height: 180px;
   }
 
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 850px){
     flex-wrap: wrap;
     height: auto;
-
-    img{
-      height: 140px;
-    }
   }
 `
 export const Titulo = styled.div`
@@ -34,12 +31,15 @@ export const Titulo = styled.div`
     color:  ${({ theme }) => theme.colors.brown.main};
     font-size: 32px;
     font-weight: bold;
+    margin-left: 8px;
+    text-align: center;
   }
 
   @media screen and (max-width: 800px){
     p{
       position: relative;
       top: 5px;
+      padding-bottom: 16px;
     }
   }
 `
@@ -49,16 +49,21 @@ export const AreaImage = styled.div`
 
   img{
     padding: 8px;
-    height: 160px;
+    height: 140px;
+    width: 180px;
   }
 
   @media screen and (max-width: 860px){
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+
     img{
       height: 140px;
     }
   }
 
   @media screen and (max-width: 660px){
-    flex-direction: column;
+
   }
 `

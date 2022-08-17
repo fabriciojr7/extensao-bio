@@ -96,7 +96,7 @@ export default function Resumos() {
               >
                 <td className="text" data-title="Autores">{resumo.autores}</td>
                 <td className="text" data-title="Título">{resumo.titulo}</td>
-                <td data-title="CPF">{resumo.aluno_cpf}</td>
+                <td className="cpf" data-title="CPF">{resumo.aluno_cpf}</td>
               </tr>
             ))
           }

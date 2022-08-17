@@ -18,6 +18,12 @@ export const Container = styled.div`
         background: ${({ theme }) => theme.colors.primary.lighter};
       }
     }
+
+    td {
+      &.cpf{
+        width: 140px;
+      }
+    }
   }
 `
 

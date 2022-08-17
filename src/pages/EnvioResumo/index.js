@@ -281,6 +281,10 @@ export default function EnvioResumo() {
             </FormGrouping>
           </ContainerForm>
 
+          <p className="obs">
+            Ao preencher os campos as palavras em itálico e ou sublinhadas, tais formatações não serão mantidas no banco de dados,
+            porém não haverá prejuízo para a avaliação do seu resumo
+          </p>
           <FormGrouping
             error={getErrorsMEssageByFieldName('resumo')}
           >

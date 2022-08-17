@@ -41,8 +41,8 @@ export default function Home() {
         >
           Inscreva-se no evento
         </Button>
-        <Patrocinios />
       </Content>
+      <Patrocinios />
 
 
     </Container>

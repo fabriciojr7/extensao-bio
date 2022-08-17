@@ -18,6 +18,7 @@ import Inscritos from './pages/private/Inscritos';
 import LayoutAdm from './pages/private/LayoutAdm';
 import Resumos from './pages/private/Resumos';
 import VisualizacaoResumo from './pages/private/VisualizacaoResumo';
+import EditParticipante from './pages/private/EditParticipante';
 
 import { AuthProvider, AuthContext } from './context/auth';
 
@@ -66,6 +67,7 @@ export default function MainRoutes() {
             <Route path="/adm/inscritos" element={<Inscritos />} />
             <Route path='/adm/resumos' element={<Resumos />} />
             <Route path='/adm/visualizacaoResumo/:id' element={<VisualizacaoResumo />} />
+            <Route path='/adm/editparticipante/:id' element={<EditParticipante />} />
           </Route>
         </Routes>
       </AuthProvider>

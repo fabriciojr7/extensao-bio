@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../../components/Button";
 import FormGrouping from "../../../components/FormGrouping";
 import Input from "../../../components/Input";
@@ -9,8 +10,11 @@ import formatCpf from "../../../utils/formatCpf";
 import CronogramaPresencas from "../components/CronogramaPresencas";
 import HeaderPage from "../components/HeaderPage";
 
-// import { FaRegEdit } from "react-icons/fa";
-import { ContentDados, ContentEfetivacao, ContentForm, ContentPresenca, Form, Line, LineContent } from "./styles";
+import { FaRegEdit } from "react-icons/fa";
+import {
+  ContentDados, ContentEfetivacao,
+  ContentForm, ContentPresenca, Form, Line, LineContent
+} from "./styles";
 
 export default function Dashboard() {
   const [cpf, setCpf] = useState('');
@@ -20,6 +24,8 @@ export default function Dashboard() {
   const [visible, setSetvisible] = useState(false);
   const [miniCursos, setMiniCursos] = useState([]);
   const [efetivado, setEfetivado] = useState(false);
+
+  const navigate = useNavigate();
 
   const getDadosParticipante = async () => {
     try {
@@ -72,12 +78,6 @@ export default function Dashboard() {
               idPresenca: data.data[0].palestras[13].idPresenca,
               titulo: data.data[0].palestras[13].titulo,
               presente: data.data[0].palestras[13].presente
-            },
-            {
-              id: 6,
-              idPresenca: data.data[0].palestras[14].idPresenca,
-              titulo: data.data[0].palestras[14].titulo,
-              presente: data.data[0].palestras[14].presente
             }
           ]);
 
@@ -161,7 +161,10 @@ export default function Dashboard() {
 
       <ContentPresenca isVisible={visible}>
         <ContentDados>
-          {/* <FaRegEdit className="edit"/> */}
+          <FaRegEdit
+            className="edit"
+            onClick={() => navigate(`/adm/editparticipante/${pessoa.id}`)}
+          />
           <h1>Dados do participante</h1>
           <LineContent>
             <span>CPF:</span>

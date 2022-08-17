@@ -56,13 +56,13 @@ export const discentes = [
     id: 3,
     foto: fabricio,
     nome: 'Fabrício Pereira dos Santos Júnior',
-    funcao: 'Desenvolvedor web'
+    funcao: 'Desenvolvedor Web'
   },
   {
     id: 4,
     foto: felipe,
     nome: 'Felipe Gustavo R. H. Bomtempo',
-    funcao: 'Desenvolvedor web'
+    funcao: 'Desenvolvedor Web'
   },
   {
     id: 5,

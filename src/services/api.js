@@ -20,6 +20,10 @@ export const updateCampo = (endpoint, campo) => {
   return api.patch(endpoint, campo);
 }
 
+export const update = (endpoint, dados) => {
+  return api.patch(endpoint, dados);
+}
+
 export const realizaLogin = (dados) => {
   return api.post('login', dados);
 }

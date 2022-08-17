@@ -88,6 +88,7 @@ export default function Programacao() {
                       {dia.palestrante && `Palestrantes: ${dia.palestrante}`} {' '}
                       {dia.palestrante2 && `/ ${dia.palestrante2}`}
                       {dia.palestrante3 && `/ ${dia.palestrante3}`}
+                      {dia.infos && `${dia.infos}`}
                     </span>
                   </Evento>
                 </Card>
@@ -112,7 +113,6 @@ export default function Programacao() {
                       {dia.miniCursos && ` / ${dia.miniCursos[2].palestrante}`}
                       {dia.miniCursos && ` / ${dia.miniCursos[3].palestrante}`}
                       {dia.miniCursos && ` / ${dia.miniCursos[4].palestrante}`}
-                      {dia.miniCursos && ` / ${dia.miniCursos[5].palestrante}`}
                     </span>
                   </Evento>
                 </Card>

@@ -58,8 +58,9 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
 
             <td rowSpan={5} className="local"><p>Bloco 6 - área aberta</p></td>
 
-            <td rowSpan={5}>Pôster/Resumo
-              Ensino médio + ilhas de temas</td>
+            <td rowSpan={5}>
+              Apresentação de trabalhos e visita guiada de alunos do ensino médio
+            </td>
 
             <td rowSpan={5} className="local"><p>Multiplas salas</p></td>
 
@@ -104,7 +105,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
             <th>08:00</th>
 
             <td className={palestras[0]?.presente ? "confirmada" : ""}>
-              <p>Palestra 1 - Magna - Divulgação da Ciência*</p>
+              <p>Palestra 1</p>
               <button
                 onClick={() =>
                   ConfirmeAlert({
@@ -130,7 +131,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
           <tr>
             <th>10:00</th>
             <td className={palestras[1]?.presente ? "confirmada" : ""}>
-              <p>Palestra 2 - SENAI Biomassa?</p>
+              <p>Palestra 2</p>
               <button
                 onClick={() =>
                   ConfirmeAlert({
@@ -159,7 +160,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
             <td rowSpan={6} className="local"><p>Anfiteatro Geografia</p></td>
 
             <td className={palestras[2]?.presente ? "confirmada" : ""}>
-              <p>Palestra 3 -Fenando (Peixes)</p>
+              <p>Palestra 3</p>
               <button
                 onClick={() =>
                   ConfirmeAlert({
@@ -174,7 +175,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
             <td rowSpan={6} className="local"><p>Anfiteatro Geografia</p></td>
 
             <td rowSpan={2} className={palestras[8]?.presente ? "confirmada" : ""}>
-              <p>Roda de tero e Empreendedorismo: Impacto ambiental (Renato Gaiga)/Educação (Renan Garcia)/Startup com fomento (Caio de Oliveira)</p>
+              <p>Roda de tereré e Empreendedorismo</p>
               <button
                 onClick={() =>
                   ConfirmeAlert({
@@ -192,7 +193,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
           <tr>
             <th>14:00</th>
             <td className={palestras[3]?.presente ? "confirmada" : ""}>
-              <p>Palestra 4 -Zoo Ilha</p>
+              <p>Palestra 4</p>
               <button
                 onClick={() =>
                   ConfirmeAlert({
@@ -225,7 +226,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
           <tr>
             <th>15:15</th>
             <td className={palestras[4]?.presente ? "confirmada" : ""}>
-              <p>Palestra 5 - Eder IBAMA</p>
+              <p>Palestra 5</p>
               <button
                 onClick={() =>
                   ConfirmeAlert({
@@ -238,7 +239,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
             </td>
 
             <td className={palestras[6]?.presente ? "confirmada" : ""}>
-              <p>Palestra 7 - Saúde?</p>
+              <p>Palestra 7</p>
               <button
                 onClick={() =>
                   ConfirmeAlert({
@@ -254,7 +255,7 @@ export default function CronogramaPresencas({ func, palestras, miniCursos }) {
           <tr>
             <th>16:15</th>
             <td className={palestras[5]?.presente ? "confirmada" : ""}>
-              <p>Palestra 6 - Botânica</p>
+              <p>Palestra 6</p>
               <button
                 onClick={() =>
                   ConfirmeAlert({
