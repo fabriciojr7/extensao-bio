@@ -233,6 +233,7 @@ export default function EditParticipante() {
         Alert('Sucesso', `Os dados do participante ${nome} foram editados.`);
         navigate('/adm');
       } catch (error) {
+        console.log(error)
         const status = error.response.data
         const cpfExists = status.errors.find(erro =>
           erro.message === 'cpf deve ser único, esse cpf já foi utilizado'

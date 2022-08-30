@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/Button";
+import Finish from "../../components/Finish";
 import FormGrouping from "../../components/FormGrouping";
 import Input from "../../components/Input";
 import Loader from "../../components/Loader";
@@ -26,6 +27,7 @@ export default function Inscricao() {
   const [escolaridade, setEscolaridade] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [enviou, setEnviou] = useState(false);
+  const encerrado = false;
 
   const { setError, removeError, getErrorsMEssageByFieldName } = useErrors();
   const navigate = useNavigate();
@@ -237,107 +239,111 @@ export default function Inscricao() {
       <TitlePage text='Inscrição' />
       {isLoading && <Loader />}
 
-
-      <Text>
-        Após o preenchimento do formulário abaixo, para a efetivação de sua inscrição na XIIIª Semana da
-        Biologia, é necessário o pagamento do valor de <span>R$ 30,00</span> que será convertido para o coffee break
-        nos intervalos de cada período do evento. Além disso, a SEMABIO promoverá uma ação beneficente e
-        solidário com doação de alimentos não perecíveis para entidades da cidade; e gostaríamos de contar
-        com seu apoio. Maiores informações serão enviadas no e-mail cadastrado no formulário.
-      </Text>
+      {
+        !encerrado &&
+        <Text>
+          Após o preenchimento do formulário abaixo, para a efetivação de sua inscrição na XIIIª Semana da
+          Biologia, é necessário o pagamento do valor de <span>R$ 30,00</span> que será convertido para o coffee break
+          nos intervalos de cada período do evento. Além disso, a SEMABIO promoverá uma ação beneficente e
+          solidário com doação de alimentos não perecíveis para entidades da cidade; e gostaríamos de contar
+          com seu apoio. Maiores informações serão enviadas no e-mail cadastrado no formulário.
+        </Text>
+      }
 
       <Content>
-        <form noValidate>
-          <FormGrouping error={getErrorsMEssageByFieldName('nome')}>
-            <Input
-              error={getErrorsMEssageByFieldName('nome')}
-              placeholder="Nome completo *"
-              autoFocus
-              value={nome}
-              onChange={handleNomeChange}
-              maxLength={64}
-            />
-          </FormGrouping>
+        {
+          encerrado ? <Finish text='Desculpe, mas as incrições já foram encerradas...' /> :
+            <form noValidate>
+              <FormGrouping error={getErrorsMEssageByFieldName('nome')}>
+                <Input
+                  error={getErrorsMEssageByFieldName('nome')}
+                  placeholder="Nome completo *"
+                  autoFocus
+                  value={nome}
+                  onChange={handleNomeChange}
+                  maxLength={64}
+                />
+              </FormGrouping>
 
-          <FormGrouping error={getErrorsMEssageByFieldName('cpf')}>
-            <Input
-              error={getErrorsMEssageByFieldName('cpf')}
-              placeholder="CPF *"
-              value={cpf}
-              onChange={handleCpfChange}
-              maxLength={14}
-            />
-          </FormGrouping>
+              <FormGrouping error={getErrorsMEssageByFieldName('cpf')}>
+                <Input
+                  error={getErrorsMEssageByFieldName('cpf')}
+                  placeholder="CPF *"
+                  value={cpf}
+                  onChange={handleCpfChange}
+                  maxLength={14}
+                />
+              </FormGrouping>
 
-          <FormGrouping error={getErrorsMEssageByFieldName('fone')}>
-            <Input
-              error={getErrorsMEssageByFieldName('fone')}
-              placeholder="Telefone *"
-              value={fone}
-              onChange={handleFoneChange}
-              maxLength={15}
-            />
-          </FormGrouping>
+              <FormGrouping error={getErrorsMEssageByFieldName('fone')}>
+                <Input
+                  error={getErrorsMEssageByFieldName('fone')}
+                  placeholder="Telefone *"
+                  value={fone}
+                  onChange={handleFoneChange}
+                  maxLength={15}
+                />
+              </FormGrouping>
 
-          <FormGrouping error={getErrorsMEssageByFieldName('email')}>
-            <Input
-              error={getErrorsMEssageByFieldName('email')}
-              placeholder="Seu melhor e-mail *"
-              value={email}
-              onChange={handleEmailChange}
-              maxLength={64}
-            />
-          </FormGrouping>
+              <FormGrouping error={getErrorsMEssageByFieldName('email')}>
+                <Input
+                  error={getErrorsMEssageByFieldName('email')}
+                  placeholder="Seu melhor e-mail *"
+                  value={email}
+                  onChange={handleEmailChange}
+                  maxLength={64}
+                />
+              </FormGrouping>
 
-          <FormGrouping error={getErrorsMEssageByFieldName('instituicao')}>
-            <Input
-              error={getErrorsMEssageByFieldName('instituicao')}
-              placeholder="Instituição de ensino *"
-              value={instituicao}
-              onChange={handleInstituicaoChange}
-              maxLength={64}
-            />
-          </FormGrouping>
+              <FormGrouping error={getErrorsMEssageByFieldName('instituicao')}>
+                <Input
+                  error={getErrorsMEssageByFieldName('instituicao')}
+                  placeholder="Instituição de ensino *"
+                  value={instituicao}
+                  onChange={handleInstituicaoChange}
+                  maxLength={64}
+                />
+              </FormGrouping>
 
-          <FormGrouping error={getErrorsMEssageByFieldName('curso')}>
-            <Input
-              error={getErrorsMEssageByFieldName('curso')}
-              placeholder="Curso *"
-              value={curso}
-              onChange={handleCursoChange}
-              maxLength={64}
-            />
-          </FormGrouping>
+              <FormGrouping error={getErrorsMEssageByFieldName('curso')}>
+                <Input
+                  error={getErrorsMEssageByFieldName('curso')}
+                  placeholder="Curso *"
+                  value={curso}
+                  onChange={handleCursoChange}
+                  maxLength={64}
+                />
+              </FormGrouping>
 
-          <FormGrouping error={getErrorsMEssageByFieldName('periodo')}>
-            <Input
-              error={getErrorsMEssageByFieldName('periodo')}
-              placeholder="Período *"
-              value={periodo}
-              onChange={handlePeriodoChange}
-              maxLength={12}
-            />
-          </FormGrouping>
+              <FormGrouping error={getErrorsMEssageByFieldName('periodo')}>
+                <Input
+                  error={getErrorsMEssageByFieldName('periodo')}
+                  placeholder="Período *"
+                  value={periodo}
+                  onChange={handlePeriodoChange}
+                  maxLength={12}
+                />
+              </FormGrouping>
 
-          <FormGrouping error={getErrorsMEssageByFieldName('escolaridade')}>
-            <Input
-              error={getErrorsMEssageByFieldName('escolaridade')}
-              placeholder="Escolaridade *"
-              value={escolaridade}
-              onChange={handleEscolaridadeChange}
-              maxLength={32}
-            />
-          </FormGrouping>
+              <FormGrouping error={getErrorsMEssageByFieldName('escolaridade')}>
+                <Input
+                  error={getErrorsMEssageByFieldName('escolaridade')}
+                  placeholder="Escolaridade *"
+                  value={escolaridade}
+                  onChange={handleEscolaridadeChange}
+                  maxLength={32}
+                />
+              </FormGrouping>
 
-          <FormGrouping>
-            <Button
-              type="button"
-              onClick={handleSubmit}
-              disabled={enviou}
-            >Confirmar inscrição</Button>
-          </FormGrouping>
-        </form>
-
+              <FormGrouping>
+                <Button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={enviou}
+                >Confirmar inscrição</Button>
+              </FormGrouping>
+            </form>
+        }
       </Content>
     </>
   )

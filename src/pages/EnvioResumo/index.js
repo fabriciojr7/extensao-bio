@@ -11,6 +11,7 @@ import useErrors from "../../hooks/useErrors";
 import { create } from "../../services/api";
 import { Alert } from "../../utils/Alert";
 import formatCpf from "../../utils/formatCpf";
+import Finish from "../../components/Finish";
 
 import { ContainerForm, Content } from './styles';
 
@@ -24,6 +25,7 @@ export default function EnvioResumo() {
   const [resumo, setResumo] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [enviou, setEnviou] = useState(false);
+  const encerrado = true;
 
   const { setError, removeError, getErrorsMEssageByFieldName } = useErrors();
   const navigate = useNavigate();
@@ -164,7 +166,6 @@ export default function EnvioResumo() {
   }
 
   const handleSubmit = async () => {
-
     if (checkFormValid()) {
       try {
         setEnviou(true);
@@ -217,98 +218,101 @@ export default function EnvioResumo() {
       <TitlePage text='Envie seu resumo' />
       {isLoading && <Loader />}
       <Content>
-        <form noValidate>
-          <ContainerForm>
-            <FormGrouping error={getErrorsMEssageByFieldName('cpf')}>
-              <Input
-                error={getErrorsMEssageByFieldName('cpf')}
-                placeholder="CPF"
-                value={cpf}
-                onChange={handleCpfChange}
-                maxLength={14}
-                autoFocus
-              />
-            </FormGrouping>
+        {
+          encerrado ? <Finish text='Desculpe, mas o envio de resumos já foi encerrado...' /> :
+            <form noValidate>
+              <ContainerForm>
+                <FormGrouping error={getErrorsMEssageByFieldName('cpf')}>
+                  <Input
+                    error={getErrorsMEssageByFieldName('cpf')}
+                    placeholder="CPF"
+                    value={cpf}
+                    onChange={handleCpfChange}
+                    maxLength={14}
+                    autoFocus
+                  />
+                </FormGrouping>
 
-            <FormGrouping error={getErrorsMEssageByFieldName('titulo')}>
-              <Input
-                error={getErrorsMEssageByFieldName('titulo')}
-                placeholder="Título"
-                value={titulo}
-                onChange={handleTituloChange}
-                maxLength={128}
-              />
-            </FormGrouping>
+                <FormGrouping error={getErrorsMEssageByFieldName('titulo')}>
+                  <Input
+                    error={getErrorsMEssageByFieldName('titulo')}
+                    placeholder="Título"
+                    value={titulo}
+                    onChange={handleTituloChange}
+                    maxLength={128}
+                  />
+                </FormGrouping>
 
-            <FormGrouping error={getErrorsMEssageByFieldName('autores')}>
-              <TextArea
-                error={getErrorsMEssageByFieldName('autores')}
-                placeholder="Autores"
-                value={autores}
-                onChange={handleAutoresChange}
-                maxLength={512}
-              />
-            </FormGrouping>
+                <FormGrouping error={getErrorsMEssageByFieldName('autores')}>
+                  <TextArea
+                    error={getErrorsMEssageByFieldName('autores')}
+                    placeholder="Autores"
+                    value={autores}
+                    onChange={handleAutoresChange}
+                    maxLength={512}
+                  />
+                </FormGrouping>
 
-            <FormGrouping error={getErrorsMEssageByFieldName('filiacao')}>
-              <TextArea
-                error={getErrorsMEssageByFieldName('filiacao')}
-                placeholder="Filiação"
-                value={filiacao}
-                onChange={handleFiliacaoChange}
-                maxLength={512}
-              />
-            </FormGrouping>
+                <FormGrouping error={getErrorsMEssageByFieldName('filiacao')}>
+                  <TextArea
+                    error={getErrorsMEssageByFieldName('filiacao')}
+                    placeholder="Filiação"
+                    value={filiacao}
+                    onChange={handleFiliacaoChange}
+                    maxLength={512}
+                  />
+                </FormGrouping>
 
-            <FormGrouping error={getErrorsMEssageByFieldName('apoio')}>
-              <Input
-                error={getErrorsMEssageByFieldName('apoio')}
-                placeholder="Apoio"
-                value={apoio}
-                onChange={handleApoioChange}
-                maxLength={128}
-              />
-            </FormGrouping>
+                <FormGrouping error={getErrorsMEssageByFieldName('apoio')}>
+                  <Input
+                    error={getErrorsMEssageByFieldName('apoio')}
+                    placeholder="Apoio"
+                    value={apoio}
+                    onChange={handleApoioChange}
+                    maxLength={128}
+                  />
+                </FormGrouping>
 
-            <FormGrouping error={getErrorsMEssageByFieldName('palavrasChave')}>
-              <Input
-                error={getErrorsMEssageByFieldName('palavrasChave')}
-                placeholder="Palavras-chave"
-                value={palavrasChave}
-                onChange={handlePalavrasChaveChange}
-                maxLength={64}
-              />
-            </FormGrouping>
-          </ContainerForm>
+                <FormGrouping error={getErrorsMEssageByFieldName('palavrasChave')}>
+                  <Input
+                    error={getErrorsMEssageByFieldName('palavrasChave')}
+                    placeholder="Palavras-chave"
+                    value={palavrasChave}
+                    onChange={handlePalavrasChaveChange}
+                    maxLength={64}
+                  />
+                </FormGrouping>
+              </ContainerForm>
 
-          <p className="obs">
-            Ao preencher os campos as palavras em itálico e ou sublinhadas, tais formatações não serão mantidas no banco de dados,
-            porém não haverá prejuízo para a avaliação do seu resumo
-          </p>
-          <FormGrouping
-            error={getErrorsMEssageByFieldName('resumo')}
-          >
-            <p>{resumo.length} / 1800</p>
-            <TextArea
-              className="texto"
-              error={getErrorsMEssageByFieldName('resumo')}
-              placeholder="Coloque seu resumo aqui"
-              value={resumo}
-              onChange={handleResumoChange}
-              maxLength={1800}
-            />
-          </FormGrouping>
+              <p className="obs">
+                Ao preencher os campos as palavras em itálico e ou sublinhadas, tais formatações não serão mantidas no banco de dados,
+                porém não haverá prejuízo para a avaliação do seu resumo
+              </p>
+              <FormGrouping
+                error={getErrorsMEssageByFieldName('resumo')}
+              >
+                <p>{resumo.length} / 1800</p>
+                <TextArea
+                  className="texto"
+                  error={getErrorsMEssageByFieldName('resumo')}
+                  placeholder="Coloque seu resumo aqui"
+                  value={resumo}
+                  onChange={handleResumoChange}
+                  maxLength={1800}
+                />
+              </FormGrouping>
 
-          <ContainerForm>
-            <FormGrouping>
-              <Button
-                type="button"
-                onClick={() => handleSubmit()}
-                disabled={enviou}
-              >Enviar resumo</Button>
-            </FormGrouping>
-          </ContainerForm>
-        </form>
+              <ContainerForm>
+                <FormGrouping>
+                  <Button
+                    type="button"
+                    onClick={() => handleSubmit()}
+                    disabled={enviou}
+                  >Enviar resumo</Button>
+                </FormGrouping>
+              </ContainerForm>
+            </form>
+        }
       </Content>
     </>
   )
