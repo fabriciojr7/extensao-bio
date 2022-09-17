@@ -27,7 +27,7 @@ export default function Inscricao() {
   const [escolaridade, setEscolaridade] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [enviou, setEnviou] = useState(false);
-  const encerrado = false;
+  const encerrado = true;
 
   const { setError, removeError, getErrorsMEssageByFieldName } = useErrors();
   const navigate = useNavigate();
@@ -252,7 +252,7 @@ export default function Inscricao() {
 
       <Content>
         {
-          encerrado ? <Finish text='Desculpe, mas as incrições já foram encerradas...' /> :
+          encerrado ? <Finish text='Desculpe, mas as incrições já foram encerradas...' />:
             <form noValidate>
               <FormGrouping error={getErrorsMEssageByFieldName('nome')}>
                 <Input
